@@ -3,97 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 08:32:32 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/02/03 19:35:24 by hbuisser         ###   ########.fr       */
+/*   Updated: 2020/08/14 23:10:40 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_free_stat(char **stat, int result)
+int				ft_strchar(char *str, char c)
 {
-	if (*stat)
-	{
-		free(*stat);
-		*stat = 0;
-	}
-	return (result);
-}
-
-int		ft_strnbr(char *stat)
-{
-	int i;
+	int		i;
 
 	i = 0;
-	while (stat[i] != '\0')
+	while (str[i])
 	{
-		if (stat[i] == '\n')
+		if (str[i] == c)
 			return (i);
 		i++;
 	}
+	if (str[i] == c)
+		return (i);
 	return (-1);
 }
 
-char	*ft_strnew(int end)
+char			*ft_gnljoin(char *s1, char *s2)
 {
-	char *tmp;
+	char	*res;
+	int		i;
+	int		j;
+	int		len1;
+	int		len2;
 
-	if (!(tmp = (char *)malloc(sizeof(char) * 1)))
-		return (0);
-	tmp[0] = end;
-	return (tmp);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	res = ft_calloc(len1 + len2 + 1, sizeof(char));
+	i = 0;
+	while (i < len1)
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (j < len2)
+	{
+		res[i + j] = s2[j];
+		j++;
+	}
+	if (s1)
+		free (s1);
+	return (res);
 }
 
-int		ft_line_creation(char **stat, char **line, int idx)
+int				ft_getpos(char **str, char **line)
 {
+	int		pos;
 	char	*tmp;
-	int		result;
 
-	if (idx >= 0)
+	pos = ft_strchar(*str, '\n');
+	if (pos >= 0)
 	{
-		if (!(*line = ft_substr_gnl(*stat, 0, idx)))
-			return (ft_free_stat(stat, -1));
-		if (!(tmp = ft_substr_gnl(*stat, idx + 1, (ft_strlen(*stat) - idx - 1))))
-			return (ft_free_stat(stat, -1));
-		result = 1;
+		*line = ft_substr(*str, 0, pos);
+		tmp = *str;
+		*str = ft_substr(*str, pos +1, ft_strchar(*str,'\0'));
+		free(tmp);
+		return (1);
 	}
 	else
 	{
-		if (!(*line = ft_substr(*stat, 0, ft_strlen(*stat))))
-			return (ft_free_stat(stat, -1));
-		result = 0;
-		tmp = 0;
+		*line = ft_substr(*str, 0, ft_strchar(*str, '\0'));
+		free(*str);
+		return (0);
 	}
-	ft_free_stat(stat, 0);
-	*stat = tmp;
-	return (result);
 }
 
-int		get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	char		buff[BUFFER_SIZE + 1];
-	char		*tmp;
-	static char	*stat;
+	static char	*str;
 	int			ret;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || !line)
-		return (ft_free_stat(&stat, -1));
-	while ((ret = read(fd, buff, BUFFER_SIZE)) > 0)
+	if (!line)
+		return (-1);
+	if (!(str) && !(str = ft_calloc(1, sizeof(char))))
+		return (-1);
+	while (ft_strchar(str, '\n') < 0 && (ret = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		if (!(tmp = ft_strnjoin_gnl(stat, buff, ret)))
-			return (ft_free_stat(&stat, -1));
-		ft_free_stat(&stat, 0);
-		stat = tmp;
-		if (ft_strnbr(stat) >= 0)
-			break ;
+		str = ft_gnljoin(str, buff);
 	}
-	if (ret < 0)
-		return (ft_free_stat(&stat, -1));
-	if (ret == 0 && (!stat || *stat == '\0') &&
-			(*line = ft_strnew('\0')))
-		return (ft_free_stat(&stat, 0));
-	return (ft_line_creation(&stat, line, ft_strnbr(stat)));
+	return (ft_getpos(&str, line));
 }

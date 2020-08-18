@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 10:30:11 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/03/10 17:10:13 by hbuisser         ###   ########.fr       */
+/*   Updated: 2020/08/18 21:35:33 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,18 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 char			**ft_free(char **array, int size);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
 int				ft_strcmp(char *s1, char *s2);
+void			ft_putstr(char *str);
+void			ft_putchar(char c);
+void			ft_putnbr(int n);
+int				ft_arraylen(char **str);
+void			*ft_memalloc(size_t size);
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 42
 
 int 			get_next_line(int fd, char **line);
-int 			ft_line_creation(char **stat, char **line, int idx);
-char			*ft_strnew(int end);
-int 			ft_strnbr(char *stat);
-int 			ft_free_stat(char **stat, int result);
-int 			ft_strlen_gnl(const char *str);
-char			*ft_substr_gnl(char const *s, int start, int len);
-char			*ft_strdup_gnl(char *s1);
-char			*ft_strnjoin_gnl(char *s1, char *s2, int ret);
 
 #endif
 

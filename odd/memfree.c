@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   memfree.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/11 06:30:16 by vminomiy         ###   ########.fr       */
+/*   Created: 2020/08/12 02:48:16 by vminomiy          #+#    #+#             */
+/*   Updated: 2020/08/12 02:50:48 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int					main(void)
+void				free_map(t_all *all)
 {
-	printf("hellow world");
-	return (0);
+	//todo
+}
+
+void				free_file(t_all *all)
+{
+	//todo
 }
