@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/18 21:45:47 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 22:20:57 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,32 @@
 # include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
 
-# define EXIT_SUCCESS 1
-# define EXIT_FAILURE 0
+# define PI 3.14159265
+# define RADIAN 0.0174533
+# define NO 0
+# define EA 90
+# define SO 180
+# define WE 270
+
 # define GAME_TITLE "Cub3d"
-# define TILE_SIZE 32
 
-# define WIN_W = 1280
-# define WIN_H = 720
-
-typedef struct			s_xy
+typedef struct			s_dxy
 {
 	double			x;
 	double			y;
+}						t_dxy;
+
+typedef struct			s_xy
+{
+	int				x;
+	int				y;
 }						t_xy;
 
 typedef struct			s_player
 {
 	t_xy			pos;
 	t_xy			dir;
-	double			hip;
+	char			**face[4];
 }						t_player;
 
 typedef struct			s_sprite
@@ -54,6 +61,17 @@ typedef struct			s_ray
 	t_xy			dir;
 }						t_ray;
 
+typedef struct			s_cast
+{
+	int				mx;
+	int				my;
+	t_xy			s;
+	t_xy			d;
+	int				stepx;
+	int				stepy;
+	float			wall;
+}						t_cast;
+
 typedef struct			s_tex
 {
 	char			*img;
@@ -66,9 +84,11 @@ typedef struct			s_tex
 
 typedef struct			s_map
 {
-	int				**map;
+	char			**map;
 	int				w;
 	int				h;
+	int				color_w;
+	int				color_f2d;
 }						t_map;
 
 typedef struct			s_img
@@ -80,7 +100,8 @@ typedef struct			s_img
 	int				bpp;
 	int				line;
 	int				endian;
-	double			fov;
+	int				fov;
+	int				tile_size;
 }						t_img;
 
 typedef struct			s_file
@@ -107,9 +128,26 @@ typedef struct			s_all
 	int				color_f;
 }						t_all;
 
-static int			error_exit(char *err);
-static int			close_game(t_all *all);
-
-t_all				*init(void);
+int					error_exit(char *err);
+int					hook_close(t_all *all);
+int					exit_game(t_all *all, int ret);
+int					load_file(t_all *all, char *filename);
+void				file_init(t_file *file);
+char				**ft_realloc(char **str);
+int					read_map(t_all *all, char **matrix);
+int					find_width(char **str, int beg, int end);
+int					ft_init2(t_all *all);
+void				ft_init(t_all *all);
+void				window_init(t_all *all, t_img *win, t_map *map);
+int					load_file(t_all *all, char *filename);
+void				file_init(t_file *file);
+char				**read_file(char *filename);
+void				free_map(t_all *all);
+void				free_file(t_all *all);
+void				map_gen(t_all *all);
+int					ft_max_col(char	**str);
+int					ft_tile_size(t_all *all);
+void				render_player(t_all *all);
+void				my_pixel_put(t_img *win, int x, int y, int color);
 
 #endif

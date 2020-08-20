@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 10:30:11 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/18 21:35:33 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 07:28:06 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,9 @@ void			ft_putchar(char c);
 void			ft_putnbr(int n);
 int				ft_arraylen(char **str);
 void			*ft_memalloc(size_t size);
+void			ft_memdel(void **ap);
+int				*ft_vcalloc(size_t count, int value);
+int				ft_intlen(int n);
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H

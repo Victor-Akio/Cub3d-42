@@ -6,13 +6,13 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/15 07:31:11 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 22:02:19 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void				my_pixel_put(t_win *win, int x, int y, int color)
+void				my_pixel_put(t_img *win, int x, int y, int color)
 {
 	char		*dst;
 
@@ -20,56 +20,56 @@ void				my_pixel_put(t_win *win, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void				rect(t_win *win, int x, int y, int color, t_map *map)
+void				rect(t_all *all, int x, int y, int color)
 {
 	int			i;
 	int			j;
 
 	i = 0;
 	j = 0;
-	while (i < TILE_SIZE)
+	while (i < all->img.tile_size)
 	{
 		j = 0;
-		while (j < TILE_SIZE)
+		while (j < all->img.tile_size)
 		{
 			//my_pixel_put(win, i + x, j + y, color);
-			mlx_pixel_put(win->mlx, win->win, x + i, y + j, color);
+			mlx_pixel_put(all->mlx, all->win, x + i, y + j, color);
 			j++;
 		}
 		i++;
 	}
 }
 
-void				map_gen(t_win *win, t_map *map)
+int		create_trgb(int t, int r, int g, int b)
 {
-	int i;
-	int j;
-	int	size;
-	int worldmap[11][15] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-	};
+	return(t << 24 | r << 16 | g << 8 | b);
+}
 
+void				map_gen(t_all *all)
+{
+	int			i;
+	int			j;
+	int			tilex;
+	int			tiley;
+	
 	i = 0;
-	size = TILE_SIZE * 0.3;
-	while (i < map->h)
+	all->img.tile_size = ft_tile_size(all);
+	all->color_f = create_trgb(0, 252, 238, 195);
+	all->color_c = create_trgb(0, 151, 142, 117);
+	while (i < ft_arraylen(all->map.map))
 	{
 		j = 0;
-		while (j < map->w)
+		tiley = i * all->img.tile_size;
+		while (all->map.map[i][j] && j < ft_max_col(all->map.map))
 		{
-			rect(win, j * size, i * size, worldmap[i][j] == 1 ? 0x978E75 : 0xFCEEC3, map);
+			tilex = j * all->img.tile_size;
+			if (all->map.map[i][j] && all->map.map[i][j] == '1')
+				rect(all, tilex, tiley, all->map.color_w);
+			else if (all->map.map[i][j] && all->map.map[i][j] == '0')
+				rect(all, tilex, tiley, all->map.color_f2d);
 			j++;
 		}
 		i++;
-
 	}
+	render_player(all);
 }

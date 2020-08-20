@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/14 23:20:50 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 04:29:30 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,19 @@ int					launch_game(t_all *all)
 	ft_init(all);
 	if (!(ft_init2(all)) || !(load_file(all, all->file.filename)))
 		return (0);
-	window_init(&all->win, &all->map);
+	window_init(all, &all->img, &all->map);
 	return (1);
 }
 
 int					check_args(t_all *all, int argc, char **argv)
 {
-	if (argc <= 0)
-		g_error_number = ERR_INVALID_ARG;
-	else if (argc == 1)
-	{
-		all->file.filename = "./mapa.cub";
-		return (1);
-	}
+	if (argc <= 1)
+		return (error_exit("ERROR\nNot enough arguments\nUSE: ./cub3d [mapfile.cub]"));
 	else if (ft_strlen(argv[1]) <= 4 || ft_strncmp(argv[1] +
 				(ft_strlen(argv[1]) - 4), ".cub", 4) != 0)
-		g_error_number = ERR_INVALID_NAME;
+		return (error_exit("ERROR\nInvalid Map Name]"));
 	if (argc == 3 && ft_strncmp(argv[2], "--save", 6) != 0)
-		g_error_number = ERR_INVALID_SEC_ARG;
+		return (error_exit("ERROR\nInvalid second argument.\nUSE: --save"));
 	if (g_error_number)
 		return (0);
 	all->file.filename = argv[1];
@@ -55,18 +50,15 @@ int					main(int argc, char **argv)
 	t_all			all;
 	int				args;
 
-	if (!(all.win.mlx = mlx_init()))
-	{
-		g_error_number = ERR_MLX;
-		ft_error(&all, FALSE);
-	}
+	if (!(all.mlx = mlx_init()))
+		return (error_exit("ERROR\nMLX could not start properly"));
 	args = check_args(&all, argc, argv);
 	if (!(args))
-		ft_error(&all, FALSE);
+		hook_close(&all);
 	if (!(launch_game(&all)))
-		ft_error(&all, TRUE);
+		exit_game(&all, EXIT_SUCCESS);
 	if (args == 2)
-		exit_game(&all, 0);
-	mlx_loop(all.win.mlx);
+		exit_game(&all, EXIT_FAILURE);
+	mlx_loop(all.mlx);
 	return (0);
 }

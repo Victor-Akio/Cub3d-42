@@ -6,11 +6,11 @@
 #    By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/10 22:01:31 by vminomiy          #+#    #+#              #
-#    Updated: 2020/08/18 21:46:02 by vminomiy         ###   ########.fr        #
+#    Updated: 2020/08/20 19:22:37 by vminomiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d.a
+NAME = cub3d
 
 FRM_LINUX = -lXext -lX11 -lbsd -lm
 #FRM_MAC = -framework OpenGL -framework AppKit
@@ -23,23 +23,30 @@ MLX_PATH = ./minilibx-linux
 LIBFT = -L $(LIBFT_PATH) -lft
 LIBFT_PATH = ./libft
 
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS =		-Wall -Wextra -Werror #-fsanitize=address
 
-SRCS = main.c \
-		init.c \
+SRCS =		cub3d.c \
+			file_manager.c \
+			init.c \
+			map_reader.c \
+			mapa.c \
+			memfree.c \
+			error.c \
+			player.c \
+			mapa_utils.c \
 
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+OBJS =		$(patsubst %.c, %.o, $(SRCS))
 
-$(NAME) : $(OBJS)
-	#Cub3d Compile
-	@clang -g $(FLAGS) $(FRM_LINUX) $(OBJS) $(INCLUDES) $(MLX) $(LIBFT) -o $(NAME)
+$(NAME) :	$(OBJS)
+			#Cub3d Compile
+			@clang -g $(FLAGS) $(FRM_LINUX) $(OBJS) $(INCLUDES) $(MLX) $(LIBFT) -o $(NAME)
 
-all : $(NAME)
+all :		$(NAME)
 
 clean :
-	rm -f $(OBJS)
+			rm -f $(OBJS)
 
-fclean : clean
-	rm -f $(NAME)
+fclean :	clean
+			rm -f $(NAME)
 
-re : fclean all
+re :		fclean all

@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_vcalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 15:26:32 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/19 22:25:52 by vminomiy         ###   ########.fr       */
+/*   Created: 2020/08/19 21:09:40 by vminomiy          #+#    #+#             */
+/*   Updated: 2020/08/19 21:10:04 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int					*ft_vcalloc(size_t count, int value)
 {
-	size_t	i;
-	size_t	size_str;
-	size_t	size_sub;
-	char	*sub;
+	size_t		i;
+	int			*mem;
 
-	if (s == NULL)
-		return (NULL);
 	i = 0;
-	size_str = ft_strlen(s);
-	if (start > size_str)
-		start = size_str;
-	if (size_str >= start + len)
-		size_sub = len;
-	else
-		size_sub = size_str - start;
-	if (!(sub = (char*)malloc(size_sub + 1)))
+	if (!(mem = (int*)malloc(count * sizeof(int))))
 		return (NULL);
-	while (i < size_sub)
+	while (i < count)
 	{
-		sub[i] = s[start + i];
+		mem[i] = value;
 		i++;
 	}
-	sub[size_sub] = '\0';
-	return (sub);
+	return (mem);
 }

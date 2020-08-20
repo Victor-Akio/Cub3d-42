@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 08:32:32 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/14 23:10:40 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/19 22:24:26 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int				ft_getpos(char **str, char **line)
 	}
 }
 
-int				get_next_line(const int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
 	char		buff[BUFFER_SIZE + 1];
 	static char	*str;

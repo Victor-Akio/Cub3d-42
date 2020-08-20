@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 03:28:49 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/14 23:22:01 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 21:28:01 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char				**ft_realloc(char **str)
 	return (str);
 }
 
-char					**read_file(char *filename)
+char				**read_file(char *filename)
 {
 	char		**str;
 	char		*line;
@@ -46,7 +46,7 @@ char					**read_file(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd <= 0)
 	{
-		g_error_number = ERR_FILENAME;
+		error_exit("ERROR\nCould not open file.");
 		return (NULL);
 	}
 	while ((ret = get_next_line(fd, &line)) >= 0)
@@ -76,8 +76,17 @@ void				file_init(t_file *file)
 
 int					load_file(t_all *all, char *filename)
 {
+	int	i;
+
 	file_init(&all->file);
-	if (!(all->file.data = read_file(filename)) || (!(read_map(all))))
+	if (!(all->file.data = read_file(filename)) || (!(read_map(all, all->file.data))))
 		return (0);
+	i = 0;
+	while (all->file.data[i])
+	{
+		printf("%s\n", all->file.data[i++]);
+	}
+	printf("%d\n", all->map.w);
+	printf("%d\n", all->map.h);
 	return (1);
 }
