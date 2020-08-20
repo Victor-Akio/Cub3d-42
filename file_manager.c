@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 03:28:49 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 21:28:01 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 23:35:24 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,9 @@ int					load_file(t_all *all, char *filename)
 	if (!(all->file.data = read_file(filename)) || (!(read_map(all, all->file.data))))
 		return (0);
 	i = 0;
-	while (all->file.data[i])
+	while (all->map.map[i])
 	{
-		printf("%s\n", all->file.data[i++]);
+		printf("%s\n", all->map.map[i++]);
 	}
-	printf("%d\n", all->map.w);
-	printf("%d\n", all->map.h);
 	return (1);
 }

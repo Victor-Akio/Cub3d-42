@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 22:20:57 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 22:44:12 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 # define PI 3.14159265
 # define RADIAN 0.0174533
-# define NO 0
-# define EA 90
-# define SO 180
-# define WE 270
+# define NV 0
+# define EV 90
+# define SV 180
+# define WV 270
 
 # define GAME_TITLE "Cub3d"
 
@@ -149,5 +149,6 @@ int					ft_max_col(char	**str);
 int					ft_tile_size(t_all *all);
 void				render_player(t_all *all);
 void				my_pixel_put(t_img *win, int x, int y, int color);
+int					player_pos(t_all *all, int x, int y);
 
 #endif

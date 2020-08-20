@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 22:02:19 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/20 22:51:20 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,12 @@ void				map_gen(t_all *all)
 			tilex = j * all->img.tile_size;
 			if (all->map.map[i][j] && all->map.map[i][j] == '1')
 				rect(all, tilex, tiley, all->map.color_w);
-			else if (all->map.map[i][j] && all->map.map[i][j] == '0')
+			else if (all->map.map[i][j] && (all->map.map[i][j] != '1' && 
+						all->map.map[i][j] != ' '))
 				rect(all, tilex, tiley, all->map.color_f2d);
+			else if (all->map.map[i][j] && (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
+						all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W'))
+				player_pos(all, i, j);
 			j++;
 		}
 		i++;
