@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 22:51:20 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/21 19:14:20 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void				rect(t_all *all, int x, int y, int color)
 
 	i = 0;
 	j = 0;
-	while (i < all->img.tile_size)
+	while (i < TILE_SIZE)
 	{
 		j = 0;
-		while (j < all->img.tile_size)
+		while (j < TILE_SIZE)
 		{
 			//my_pixel_put(win, i + x, j + y, color);
 			mlx_pixel_put(all->mlx, all->win, x + i, y + j, color);
@@ -53,16 +53,15 @@ void				map_gen(t_all *all)
 	int			tiley;
 	
 	i = 0;
-	all->img.tile_size = ft_tile_size(all);
-	all->color_f = create_trgb(0, 252, 238, 195);
-	all->color_c = create_trgb(0, 151, 142, 117);
+	all->map.color_w = create_trgb(0, 252, 238, 195);
+	all->map.color_f2d = create_trgb(0, 151, 142, 117);
 	while (i < ft_arraylen(all->map.map))
 	{
 		j = 0;
-		tiley = i * all->img.tile_size;
+		tiley = i * TILE_SIZE;
 		while (all->map.map[i][j] && j < ft_max_col(all->map.map))
 		{
-			tilex = j * all->img.tile_size;
+			tilex = j * TILE_SIZE;
 			if (all->map.map[i][j] && all->map.map[i][j] == '1')
 				rect(all, tilex, tiley, all->map.color_w);
 			else if (all->map.map[i][j] && (all->map.map[i][j] != '1' && 
@@ -70,10 +69,13 @@ void				map_gen(t_all *all)
 				rect(all, tilex, tiley, all->map.color_f2d);
 			else if (all->map.map[i][j] && (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
 						all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W'))
-				player_pos(all, i, j);
+			{
+				printf("%d\n", tiley);
+				printf("%d\n", tilex);
+				player_pos(all, tiley, tilex);
+			}
 			j++;
 		}
 		i++;
 	}
-	render_player(all);
 }

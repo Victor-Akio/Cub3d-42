@@ -6,7 +6,7 @@
 #    By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/10 22:01:31 by vminomiy          #+#    #+#              #
-#    Updated: 2020/08/20 19:22:37 by vminomiy         ###   ########.fr        #
+#    Updated: 2020/08/21 08:31:49 by vminomiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ MLX_PATH = ./minilibx-linux
 LIBFT = -L $(LIBFT_PATH) -lft
 LIBFT_PATH = ./libft
 
-FLAGS =		-Wall -Wextra -Werror #-fsanitize=address
+FLAGS =		-Wall -Wextra -Werror -fsanitize=address
 
 SRCS =		cub3d.c \
 			file_manager.c \

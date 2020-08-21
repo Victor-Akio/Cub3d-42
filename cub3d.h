@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 22:44:12 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/21 09:44:43 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define SV 180
 # define WV 270
 
+# define TILE_SIZE 32
 # define GAME_TITLE "Cub3d"
 
 typedef struct			s_dxy
@@ -44,8 +45,8 @@ typedef struct			s_xy
 
 typedef struct			s_player
 {
-	t_xy			pos;
-	t_xy			dir;
+	t_dxy			pos;
+	t_dxy			dir;
 	char			**face[4];
 }						t_player;
 
@@ -101,7 +102,6 @@ typedef struct			s_img
 	int				line;
 	int				endian;
 	int				fov;
-	int				tile_size;
 }						t_img;
 
 typedef struct			s_file

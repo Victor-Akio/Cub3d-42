@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 19:13:32 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/21 07:50:01 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int					read_map(t_all *all, char **matrix)
 			(*matrix)++;
 			*matrix = next_word(*matrix);
 			all->map.w = ft_atoi(*matrix);
-			*matrix = next_word((*matrix) += ft_intlen(all->map.w));
+			*matrix = next_word((*matrix) + ft_intlen(all->map.w));
 			all->map.h = ft_atoi(*matrix);
 		}
 		else if (ft_strncmp(*matrix, "NO", 2) == 0)

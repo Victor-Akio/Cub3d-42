@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 04:29:30 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/21 09:37:50 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int					launch_game(t_all *all)
 {
 	ft_init(all);
 	if (!(ft_init2(all)) || !(load_file(all, all->file.filename)))
+	{
+		printf("aqui");
 		return (0);
+	}
 	window_init(all, &all->img, &all->map);
 	return (1);
 }

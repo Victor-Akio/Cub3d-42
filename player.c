@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 23:23:13 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 23:54:21 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/21 19:14:12 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	circle(t_all *all, int x, int y, int r)
 		while (j < all->map.w)
 		{
 			if ((((i-x)*(i-x)) + ((j-y)*(j-y))) <= (r*r))
-				//my_pixel_put(all->win, i, j, 0xC31433);
 				mlx_pixel_put(all->mlx, all->win, i, j, 0xC31433);
 			j++;
 		}
@@ -63,9 +62,10 @@ void				render_player(t_all *all)
 	}
 	all->player.dir.x = x + 0.5;
 	all->player.dir.y = y + 0.5;
+	circle(all, x, y, 6);
 }
 
-void				rotate_horizontal(double ang, t_xy in, t_xy *out)
+void				rotate_horizontal(double ang, t_dxy in, t_dxy *out)
 {
 	t_xy		tmp;
 	double		radian;
@@ -94,5 +94,6 @@ int					player_pos(t_all *all, int x, int y)
 		rotate_horizontal(WV, all->player.dir, &all->player.dir);
 	else if (all->map.map[x][y] == 'E')
 		rotate_horizontal(EV, all->player.dir, &all->player.dir);
+	render_player(all);
 	return (1);
 }
