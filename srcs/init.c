@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 03:01:57 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 05:40:59 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int					ft_init2(t_all *all)
 	if (all->color_f == -1)
 		all->color_f = 0x797c7d;
 	if (all->img.w == 0)
-		all->img.w = 1280;
+		all->img.w = 800;
 	if (all->img.h == 0)
 		all->img.h = 800;
 		return (1);
@@ -53,6 +53,6 @@ void				window_init(t_all *all, t_img *win)
 	win->img = mlx_new_image(all->mlx, win->w, win->h);
 	win->addr = mlx_get_data_addr(win->img, &(win->bpp), &(win->line), &(win->endian));
 	map_gen(all);
-	put_player(all);
+	player_pos(all);
 	//mlx_put_image_to_window(all->mlx, all->win, win->img, 0, 0);
 }

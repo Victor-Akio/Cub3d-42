@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 03:06:51 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 05:15:58 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ void				map_gen(t_all *all)
 			else if (all->map.map[i][j] && (all->map.map[i][j] != '1' && 
 						all->map.map[i][j] != ' '))
 				rect(all, tilex, tiley, all->map.color_f2d);
+			if (all->map.map[i][j] && (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
+				all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W'))
+			{
+				all->player.pos.x = tilex + TILE_SIZE / 2;
+				all->player.pos.y = tiley + TILE_SIZE / 2;
+				all->player.way = all->map.map[i][j];
+				all->player.map.x = i;
+				all->player.map.y = j;
+			}
 			j++;
 		}
 		i++;
