@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 03:28:49 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 01:34:57 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 10:18:22 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void				file_init(t_file *file)
 int					load_file(t_all *all, char *filename)
 {
 	file_init(&all->file);
-	if (!(all->file.data = read_file(filename)) || (!(read_map(all, all->file.data))))
+	if (!(all->file.data = read_file(filename)) || !(read_map(all, all->file.data)))
 		return (0);
 	return (1);
 }

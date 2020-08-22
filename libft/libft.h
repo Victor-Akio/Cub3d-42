@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 10:30:11 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/20 07:28:06 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 09:30:02 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
 int				*ft_vcalloc(size_t count, int value);
 int				ft_intlen(int n);
+int				ft_isspace(int c);
+int				ft_arespace(char *line);
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H

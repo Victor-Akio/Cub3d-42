@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 05:40:59 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 12:30:25 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int					ft_init2(t_all *all)
 		all->img.w = 800;
 	if (all->img.h == 0)
 		all->img.h = 800;
-		return (1);
+	return (1);
 }
 
 void				ft_init(t_all *all)
@@ -54,5 +54,5 @@ void				window_init(t_all *all, t_img *win)
 	win->addr = mlx_get_data_addr(win->img, &(win->bpp), &(win->line), &(win->endian));
 	map_gen(all);
 	player_pos(all);
-	//mlx_put_image_to_window(all->mlx, all->win, win->img, 0, 0);
+	//mlx_put_image_to_window(all->mlx, all->win, win->img, 10, 10);
 }

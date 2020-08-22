@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 05:20:24 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 09:29:23 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,6 @@ typedef struct			s_ray
 	t_xy			dir;
 }						t_ray;
 
-typedef struct			s_cast
-{
-	int				mx;
-	int				my;
-	t_xy			s;
-	t_xy			d;
-	int				stepx;
-	int				stepy;
-	float			wall;
-}						t_cast;
-
 typedef struct			s_tex
 {
 	char			*img;
@@ -128,6 +117,8 @@ typedef struct			s_all
 	double			walk;
 	int				color_c;
 	int				color_f;
+	int				floor[3];
+	int				celling[3];
 }						t_all;
 
 int					error_exit(char *err);

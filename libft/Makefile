@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+         #
+#    By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/16 12:18:16 by hbuisser          #+#    #+#              #
-#    Updated: 2020/08/20 07:28:20 by vminomiy         ###   ########.fr        #
+#    Updated: 2020/08/22 09:31:41 by vminomiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ ft_strdup.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c \
 ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
 ft_toupper.c ft_strncpy.c ft_strcmp.c ft_putstr.c ft_putchar.c ft_putnbr.c \
 ft_arraylen.c get_next_line.c ft_memalloc.c ft_memdel.c ft_vcalloc.c \
-ft_intlen.c 
+ft_intlen.c ft_isspace.c
 
 SRCS_B = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 ft_lstadd_back_bonus.c ft_lstlast_bonus.c ft_lstclear_bonus.c \

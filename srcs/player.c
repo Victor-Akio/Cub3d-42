@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 23:23:13 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 05:38:47 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 10:25:44 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int					player_pos(t_all *all)
 		error_exit("ERROR\nSomething went wrong with the player.");
 		return (0);
 	}
-	if (all->map.map[x][y] == 'N')
+	if (all->player.way == 'N')
 		rotate_horizontal(NV, all->player.dir, &all->player.dir);
-	else if (all->map.map[x][y] == 'S')
+	else if (all->player.way == 'S')
 		rotate_horizontal(SV, all->player.dir, &all->player.dir);
-	else if (all->map.map[x][y] == 'w')
+	else if (all->player.way == 'w')
 		rotate_horizontal(WV, all->player.dir, &all->player.dir);
-	else if (all->map.map[x][y] == 'E')
+	else if (all->player.way == 'E')
 		rotate_horizontal(EV, all->player.dir, &all->player.dir);
 	circle(all, 2);
 	return (1);
