@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/21 09:37:50 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 01:36:17 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 int		g_error_number;
 
@@ -29,7 +29,7 @@ int					launch_game(t_all *all)
 		printf("aqui");
 		return (0);
 	}
-	window_init(all, &all->img, &all->map);
+	window_init(all, &all->img);
 	return (1);
 }
 

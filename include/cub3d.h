@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/21 09:44:43 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 03:10:51 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include "./libft/libft.h"
-# include "./minilibx-linux/mlx.h"
+# include "libft.h"
+# include "mlx.h"
 
 # define PI 3.14159265
 # define RADIAN 0.0174533
@@ -28,7 +28,7 @@
 # define SV 180
 # define WV 270
 
-# define TILE_SIZE 32
+# define TILE_SIZE 10
 # define GAME_TITLE "Cub3d"
 
 typedef struct			s_dxy
@@ -138,12 +138,12 @@ int					read_map(t_all *all, char **matrix);
 int					find_width(char **str, int beg, int end);
 int					ft_init2(t_all *all);
 void				ft_init(t_all *all);
-void				window_init(t_all *all, t_img *win, t_map *map);
+void				window_init(t_all *all, t_img *win);
 int					load_file(t_all *all, char *filename);
 void				file_init(t_file *file);
 char				**read_file(char *filename);
-void				free_map(t_all *all);
-void				free_file(t_all *all);
+void				free_map();
+void				free_file();
 void				map_gen(t_all *all);
 int					ft_max_col(char	**str);
 int					ft_tile_size(t_all *all);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/21 07:50:01 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 01:36:40 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 char				*next_word(char *str)
 {
@@ -73,4 +73,5 @@ int					read_map(t_all *all, char **matrix)
 			all->file.keys[4] = next_word(++(*matrix));
 		matrix++;
 	}
+	return (1);
 }

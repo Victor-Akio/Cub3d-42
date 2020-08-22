@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapa_utils.c                                       :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 19:19:42 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/20 19:26:01 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 01:35:12 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 int					ft_max_col(char	**str)
 {

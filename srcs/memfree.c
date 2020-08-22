@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   memfree.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 02:48:16 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/12 02:50:48 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 01:37:11 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
-void				free_map(t_all *all)
+void				free_map()
 {
 	//todo
 }
 
-void				free_file(t_all *all)
+void				free_file()
 {
 	//todo
 }

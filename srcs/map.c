@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mapa.c                                             :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/21 19:14:20 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 03:06:51 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 void				my_pixel_put(t_img *win, int x, int y, int color)
 {
@@ -67,15 +67,9 @@ void				map_gen(t_all *all)
 			else if (all->map.map[i][j] && (all->map.map[i][j] != '1' && 
 						all->map.map[i][j] != ' '))
 				rect(all, tilex, tiley, all->map.color_f2d);
-			else if (all->map.map[i][j] && (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
-						all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W'))
-			{
-				printf("%d\n", tiley);
-				printf("%d\n", tilex);
-				player_pos(all, tiley, tilex);
-			}
 			j++;
 		}
 		i++;
 	}
+	
 }

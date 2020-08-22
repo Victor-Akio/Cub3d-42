@@ -3,50 +3,86 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+         #
+#    By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/10 22:01:31 by vminomiy          #+#    #+#              #
-#    Updated: 2020/08/21 08:31:49 by vminomiy         ###   ########.fr        #
+#    Updated: 2020/08/22 02:34:39 by vminomiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME	=	cub3d
 
-FRM_LINUX = -lXext -lX11 -lbsd -lm
-#FRM_MAC = -framework OpenGL -framework AppKit
+CC		=	clang
 
-INCLUDES = -I $(MLX_PATH) -I $(LIBFT_PATH)
+MODULES	=	$(LIB_DIR) $(MLX_DIR)
 
-MLX = -L $(MLX_PATH) -lmlx
-MLX_PATH = ./minilibx-linux
+LIB_DIR	=	./libft
 
-LIBFT = -L $(LIBFT_PATH) -lft
-LIBFT_PATH = ./libft
+LIB		=	$(LIB_DIR)/libft.a
 
-FLAGS =		-Wall -Wextra -Werror -fsanitize=address
+MLX_DIR	=	./minilibx-linux
 
-SRCS =		cub3d.c \
-			file_manager.c \
-			init.c \
-			map_reader.c \
-			mapa.c \
-			memfree.c \
-			error.c \
-			player.c \
-			mapa_utils.c \
+MLX		=	$(MLX_DIR)/libmlx_Linux.a
 
-OBJS =		$(patsubst %.c, %.o, $(SRCS))
+CUB_DIR	=	./srcs
 
-$(NAME) :	$(OBJS)
-			#Cub3d Compile
-			@clang -g $(FLAGS) $(FRM_LINUX) $(OBJS) $(INCLUDES) $(MLX) $(LIBFT) -o $(NAME)
+CC_FLAG =	-c		\
+			-Wall	\
+			-Wextra	\
+			-Werror	\
 
-all :		$(NAME)
+INCLUDE	=	-I ./include	\
+			-I $(MLX_DIR)	\
+			-I $(LIB_DIR)
 
-clean :
-			rm -f $(OBJS)
+ML_FLAG	=	-L $(LIB_DIR)	\
+			-L $(MLX_DIR)	\
+			-lmlx_Linux		\
+			-lXext			\
+			-lX11			\
+			-lm				\
+			-lft			
 
-fclean :	clean
-			rm -f $(NAME)
+RM		=	/bin/rm -f
 
-re :		fclean all
+CUB_SRC	=	$(CUB_DIR)/cub3d.c			\
+			$(CUB_DIR)/error.c			\
+			$(CUB_DIR)/file_manager.c	\
+			$(CUB_DIR)/init.c			\
+			$(CUB_DIR)/map_reader.c		\
+			$(CUB_DIR)/map_utils.c		\
+			$(CUB_DIR)/memfree.c		\
+			$(CUB_DIR)/player.c			\
+			$(CUB_DIR)/map.c			
+
+SRC		=	$(CUB_SRC)
+
+OBJ		=	$(patsubst %.c, %.o, ${SRC})
+
+
+#-fsanitize=address
+all		:	$(NAME)
+
+$(NAME)	:	$(OBJ) $(LIB) $(MLX)
+			$(CC) -fsanitize=address $(ML_FLAG) -o $@ $^
+
+%.o		:	%.c
+			$(CC) -g $(CC_FLAG) $(INCLUDE) $< -o $@
+
+$(LIB)	:
+			$(MAKE) -C $(LIB_DIR)
+
+$(MLX)	:
+			$(MAKE) -C $(MLX_DIR)
+
+clean	:
+			for dir in $(MODULES); do	\
+				$(MAKE) clean -C $$dir;	\
+			done
+			$(RM) $(OBJ)
+
+fclean	:	clean
+			$(MAKE) fclean -C $(LIB_DIR)
+			$(RM) $(NAME)
+
+re		:	fclean all

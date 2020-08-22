@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 23:23:13 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/21 19:14:12 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 03:18:08 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 int		get_tile(t_all *all, int x, int y)
 {
@@ -96,4 +96,28 @@ int					player_pos(t_all *all, int x, int y)
 		rotate_horizontal(EV, all->player.dir, &all->player.dir);
 	render_player(all);
 	return (1);
+}
+
+void				put_player(t_all *all)
+{
+	int			i;
+	int			j;
+	int			tilex;
+	int			tiley;
+
+	i = 0;
+	while (i < ft_arraylen(all->map.map))
+	{
+		j = 0;
+		tiley = i * TILE_SIZE;
+		while (all->map.map[i][j] && j < ft_max_col(all->map.map))
+		{
+			tilex = j * TILE_SIZE;
+			if (all->map.map[i][j] && (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
+				all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W'))
+				player_pos(all, (tiley + TILE_SIZE / 2), (tilex + TILE_SIZE / 2));
+			j++;
+		}
+		i++;
+	}
 }

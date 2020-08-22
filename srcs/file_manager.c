@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@students.42sp.org.br    +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 03:28:49 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/21 09:41:17 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 01:34:57 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 char				**ft_realloc(char **str)
 {
