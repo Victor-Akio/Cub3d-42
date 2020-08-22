@@ -6,17 +6,17 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 12:30:32 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 20:12:42 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void				my_pixel_put(t_img *win, int x, int y, int color)
+void				my_pixel_put(t_img *img, int x, int y, int color)
 {
 	char		*dst;
 
-	dst = win->addr + (y * win->line + x * (win->bpp / 8));
+	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -32,7 +32,7 @@ void				rect(t_all *all, int x, int y, int color)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			//my_pixel_put(all->win, i + x, j + y, color);
+			//my_pixel_put(&(all->img), x + i, y + j, color);
 			mlx_pixel_put(all->mlx, all->win, x + i, y + j, color);
 			j++;
 		}

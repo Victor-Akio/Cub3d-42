@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 09:29:23 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 14:22:46 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ typedef struct			s_img
 	char			*addr;
 	int				h;
 	int				w;
-	int				bpp;
-	int				line;
+	int				bits_per_pixel;
+	int				line_length;
 	int				endian;
 	int				fov;
 }						t_img;
@@ -115,10 +115,8 @@ typedef struct			s_all
 	t_sprite		*sprite;
 	double			rotation;
 	double			walk;
-	int				color_c;
-	int				color_f;
-	int				floor[3];
-	int				celling[3];
+	int				color_c[3];
+	int				color_f[3];
 }						t_all;
 
 int					error_exit(char *err);

@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 12:28:40 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/23 01:41:50 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,54 +35,60 @@ int					find_width(char **str, int beg, int end)
 	return (w);
 }
 
-int					check_border(t_all *all, t_xy pos)
+int					ft_ischarmap(char c)
 {
-	t_xy		xy;
-	t_xy		up;
-	t_xy		turn;
-
-	turn.x = 0;
-	turn.y = 0;
-	while (turn.x <= 3)
-	{
-		xy = pos;
-		up.x = (turn.x % 2 == 0) ? 1 : 0;
-		turn.y = (turn.x >= 2) ? -1 : 1;
-		while (xy.x >= 0 && xy.x < all->map.w && xy.y >= 0 && xy.y < all->map.h)
-		{
-			if (all->map.map[xy.x][xy.y] == -1 || (((xy.x == 0 || xy.x == all->map.w - 1) || (xy.y == 0 || xy.y == all->map.h - 1)) && all->map.map[xy.x][xy.y] != 1))
-				return (0);
-			else if (all->map.map[xy.x][xy.y] == 1)
-				break ;
-			xy.x += (up.x * turn.y);
-			xy.y += (!(up.x) * turn.y);
-		}
-		turn.x++;
-	}
-	return (1);
+	if (!c || c == '\0')
+		return (0);
+	if (c == '0' || c == '1' || c == '2' || c == 'N' ||
+			c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	else
+		return (0);
 }
 
-int					ft_cub_valid_map(t_all *all, char **matrix)
+int					is_wall(int c)
 {
-	t_xy		pos;
-	int			c;
+	if (c == '1' || c == ' ')
+		return (1);
+	return (0);
+}
 
-	pos.x = 0;
-	all->map.map = matrix;
-	while (pos.x < all->map.w)
+static void			has_walls(int x, int y, int len, char **matrix)
+{
+	int			ptrl;
+
+	ptrl = ft_arraylen(matrix);
+	if (((y == 0 || y == ptrl -1) || (x == 0 || x == len - 1)) &&
+			(!(is_wall(matrix[y][x]))))
+		error_exit("ERROR\nMap not surronded by walls.");
+	if ((y > 0 && y < ptrl - 1) && (x > 0 && x < len - 1) &&
+			(matrix[y][x] == '0') && ((!(ft_ischarmap(matrix[y][x - 1]))) ||
+			(!(ft_ischarmap(matrix[y + 1][x]))) ||
+			(!(ft_ischarmap(matrix[y][x + 1]))) ||
+			(!(ft_ischarmap(matrix[y - 1][x])))))
+		error_exit("ERROR\nMap not surronded by walls.");
+}
+
+void				ft_cub_valid_map(char **matrix)
+{
+	t_xy		xy;
+	t_xy		len;
+
+	xy.x = 0;
+	xy.y = 0;
+
+	len.y = ft_arraylen(matrix);
+	while (xy.y < len.y -1)
 	{
-		pos.y = 0;
-		while (pos.y < all->map.h)
+		len.x = ft_strlen(matrix[xy.y]);
+		while (xy.x < len.x)
 		{
-			c = all->map.map[pos.x][pos.y];
-			if (c > 1 || c == 0)
-				if (!(check_border(all, pos)))
-					return (0);
-			pos.y++;
+			has_walls(xy.x, xy.y, len.x, matrix);
+			xy.x++;
 		}
-		pos.x++;
+		xy.x = 0;
+		xy.y++;
 	}
-	return (1);
 }
 
 int					set_color(char *line, int *dst)
@@ -122,7 +128,7 @@ int					read_map(t_all *all, char **matrix)
 		tmp = next_word(*matrix);
 		if (ft_isdigit(*tmp))
 		{
-			ft_cub_valid_map(all, matrix);
+			ft_cub_valid_map(matrix);
 			break ;
 		}
 		*matrix = next_word(*matrix);
@@ -145,10 +151,11 @@ int					read_map(t_all *all, char **matrix)
 		else if (ft_strncmp(*matrix, "S", 1) == 0)
 			all->file.keys[4] = next_word(++(*matrix));
 		else if (ft_strncmp(*matrix, "F" , 1) == 0)
-			set_color(++(*matrix), &(all->floor[0]));
+			set_color(++(*matrix), &(all->color_f[0]));
 		else if (ft_strncmp(*matrix, "C" , 1) == 0)
-			set_color(++(*matrix), &(all->celling[0]));
+			set_color(++(*matrix), &(all->color_c[0]));
 		matrix++;
 	}
+	all->map.map = matrix;
 	return (1);
 }

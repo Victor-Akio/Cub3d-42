@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 12:30:25 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 20:12:31 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int					ft_init2(t_all *all)
 {
-	if (all->color_c == -1)
-		all->color_c = 0x16a7f5;
-	if (all->color_f == -1)
-		all->color_f = 0x797c7d;
 	if (all->img.w == 0)
 		all->img.w = 800;
 	if (all->img.h == 0)
@@ -38,8 +34,8 @@ void				ft_init(t_all *all)
 	all->img.fov = 0;
 	all->rotation = 5;
 	all->walk = 0.5;
-	all->color_c = -1;
-	all->color_f = -1;
+	all->color_c[0] = -1;
+	all->color_f[0] = -1;
 	all->player.pos.x = 0;
 	all->player.pos.y = 0;
 	all->player.dir.x = 0;
@@ -51,7 +47,8 @@ void				window_init(t_all *all, t_img *win)
 {
 	all->win = mlx_new_window(all->mlx, win->w, win->h, GAME_TITLE);
 	win->img = mlx_new_image(all->mlx, win->w, win->h);
-	win->addr = mlx_get_data_addr(win->img, &(win->bpp), &(win->line), &(win->endian));
+	win->addr = mlx_get_data_addr(win->img, &(win->bits_per_pixel),
+		&(win->line_length), &(win->endian));
 	map_gen(all);
 	player_pos(all);
 	//mlx_put_image_to_window(all->mlx, all->win, win->img, 10, 10);

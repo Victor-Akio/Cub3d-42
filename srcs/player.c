@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/19 23:23:13 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 10:25:44 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/22 20:11:48 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	circle(t_all *all, int r)
 		{
 			if ((pow(i - all->player.pos.x, 2) + (pow(j - all->player.pos.y, 2))) <= pow(r, 2))
 				mlx_pixel_put(all->mlx, all->win, i, j, 0xC31433);
+				//my_pixel_put(&(all->img), i, j, 0xC31433);
 			j++;
 		}
 		i++;
