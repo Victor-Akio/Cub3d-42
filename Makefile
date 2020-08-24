@@ -6,7 +6,7 @@
 #    By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/10 22:01:31 by vminomiy          #+#    #+#              #
-#    Updated: 2020/08/22 02:34:39 by vminomiy         ###   ########.fr        #
+#    Updated: 2020/08/24 04:02:54 by vminomiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,10 @@ CUB_SRC	=	$(CUB_DIR)/cub3d.c			\
 			$(CUB_DIR)/map_utils.c		\
 			$(CUB_DIR)/memfree.c		\
 			$(CUB_DIR)/player.c			\
-			$(CUB_DIR)/map.c			
+			$(CUB_DIR)/map.c			\
+			$(CUB_DIR)/movement.c		\
+			$(CUB_DIR)/keys.c			\
+			$(CUB_DIR)/raycast.c		\
 
 SRC		=	$(CUB_SRC)
 

@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 12:27:35 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/24 02:25:50 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int					main(int argc, char **argv)
 		hook_close(&all);
 	if (!(launch_game(&all)))
 		exit_game(&all, EXIT_SUCCESS);
-	//calculate_rays(&all);
-	//set_hooks(&all);
+	calculate_rays(&all);
+	set_hooks(&all);
 	if (args == 2)
 		exit_game(&all, EXIT_FAILURE);
 	mlx_loop(all.mlx);

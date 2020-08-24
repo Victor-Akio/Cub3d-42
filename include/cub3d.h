@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 14:22:46 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/24 03:50:52 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@
 # define EV 90
 # define SV 180
 # define WV 270
+
+# define KEY_ESC 65307
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define X11_KEYPRESS 2
+# define X11_DESTROY 17
 
 # define TILE_SIZE 20
 # define GAME_TITLE "Cub3d"
@@ -50,6 +60,7 @@ typedef struct			s_player
 	t_xy			map;
 	char			way;
 	char			**face[4];
+	double			dist;
 }						t_player;
 
 typedef struct			s_sprite
@@ -60,8 +71,19 @@ typedef struct			s_sprite
 
 typedef struct			s_ray
 {
-	t_xy			pos;
-	t_xy			dir;
+	t_dxy			pos;
+	t_dxy			dir;
+	t_dxy			dir_dist;
+	t_dxy			spr_dist;
+	t_dxy			step;
+	double			ang;
+	double			size;
+	double			dist;
+	double			n_dist;
+	double			*buffer;
+	int				side;
+	int				wall;
+	int				spr;
 }						t_ray;
 
 typedef struct			s_tex
@@ -141,5 +163,13 @@ int					ft_tile_size(t_all *all);
 void				render_player(t_all *all);
 void				my_pixel_put(t_img *win, int x, int y, int color);
 int					player_pos(t_all *all);
+void				set_hooks(t_all *all);
+void				mv_up(t_all *all);
+void				mv_down(t_all *all);
+void				mv_right(t_all *all);
+void				mv_left(t_all *all);
+int					close_button(t_all *all);
+void				rotate_horizontal(double ang, t_dxy in, t_dxy *out);
+int					calculate_rays(t_all *all);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 20:12:31 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/24 03:09:52 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int					ft_init2(t_all *all)
 		all->img.w = 800;
 	if (all->img.h == 0)
 		all->img.h = 800;
+	all->player.dist = (double)(all->img.w / 2.0) / tan((all->img.fov / 2) * RADIAN);
 	return (1);
 }
 
