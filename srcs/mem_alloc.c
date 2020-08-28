@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   mem_alloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 08:41:39 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/25 22:14:04 by vminomiy         ###   ########.fr       */
+/*   Created: 2020/08/26 20:19:32 by vminomiy          #+#    #+#             */
+/*   Updated: 2020/08/26 20:31:33 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/cub3d.h"
 
-char	**ft_free(char **array, int size)
+void				mem_spr(t_all *all)
 {
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-	return (NULL);
+	(void)all;
+	all->ray.spr = all->map.h * all->map.w;
+	all->sprite = (t_sprite *)ft_calloc(all->ray.spr, sizeof(t_sprite));
+	all->ray.buffer = (double *)ft_calloc(all->img.w + 1, sizeof(double));
 }

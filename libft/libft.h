@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 10:30:11 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/22 09:30:02 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/27 21:14:18 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 char			**ft_free(char **array, int size);
+char			**ft_freearray(char **array);
 char			*ft_strncpy(char *dst, const char *src, size_t len);
 int				ft_strcmp(char *s1, char *s2);
 void			ft_putstr(char *str);

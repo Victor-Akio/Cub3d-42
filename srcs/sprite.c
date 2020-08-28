@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/24 08:41:39 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/25 22:14:04 by vminomiy         ###   ########.fr       */
+/*   Created: 2020/08/27 00:14:45 by vminomiy          #+#    #+#             */
+/*   Updated: 2020/08/28 07:10:23 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/cub3d.h"
 
-char	**ft_free(char **array, int size)
+void				draw_spr(t_all *all)
 {
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-	return (NULL);
+	
 }

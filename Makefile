@@ -6,7 +6,7 @@
 #    By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/10 22:01:31 by vminomiy          #+#    #+#              #
-#    Updated: 2020/08/24 04:02:54 by vminomiy         ###   ########.fr        #
+#    Updated: 2020/08/28 07:51:12 by vminomiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,13 +57,14 @@ CUB_SRC	=	$(CUB_DIR)/cub3d.c			\
 			$(CUB_DIR)/movement.c		\
 			$(CUB_DIR)/keys.c			\
 			$(CUB_DIR)/raycast.c		\
+			$(CUB_DIR)/texture.c		\
+			$(CUB_DIR)/mem_alloc.c
+			# $(CUB_DIR)/sprite.c
 
 SRC		=	$(CUB_SRC)
 
 OBJ		=	$(patsubst %.c, %.o, ${SRC})
 
-
-#-fsanitize=address
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ) $(LIB) $(MLX)

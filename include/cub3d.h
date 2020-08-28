@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/24 03:50:52 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/28 08:35:41 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 # define PI 3.14159265
 # define RADIAN 0.0174533
-# define NV 0
-# define EV 90
-# define SV 180
-# define WV 270
+# define NV 270
+# define EV 180
+# define SV 90
+# define WV 0
 
 # define KEY_ESC 65307
 # define KEY_A 97
@@ -57,7 +57,7 @@ typedef struct			s_player
 {
 	t_dxy			pos;
 	t_dxy			dir;
-	t_xy			map;
+	t_dxy			map;
 	char			way;
 	char			**face[4];
 	double			dist;
@@ -73,13 +73,13 @@ typedef struct			s_ray
 {
 	t_dxy			pos;
 	t_dxy			dir;
-	t_dxy			dir_dist;
-	t_dxy			spr_dist;
+	t_dxy			delta_dist;
+	t_dxy			ab_dist;
 	t_dxy			step;
 	double			ang;
 	double			size;
 	double			dist;
-	double			n_dist;
+	double			pdist;
 	double			*buffer;
 	int				side;
 	int				wall;
@@ -89,11 +89,13 @@ typedef struct			s_ray
 typedef struct			s_tex
 {
 	char			*img;
+	void			*mlx;
 	int				w;
 	int				h;
 	int				bpp;
 	int				line;
 	int				endian;
+	int				set;
 }						t_tex;
 
 typedef struct			s_map
@@ -131,14 +133,17 @@ typedef struct			s_all
 	t_map			map;
 	t_file			file;
 	t_img			img;
+	t_img			minimap;
 	t_ray			ray;
 	t_player		player;
 	t_tex			*tex;
 	t_sprite		*sprite;
 	double			rotation;
 	double			walk;
-	int				color_c[3];
-	int				color_f[3];
+	int				rgb_f[3];
+	int				rgb_c[3];
+	int				color_f;
+	int				color_c;
 }						t_all;
 
 int					error_exit(char *err);
@@ -155,13 +160,11 @@ void				window_init(t_all *all, t_img *win);
 int					load_file(t_all *all, char *filename);
 void				file_init(t_file *file);
 char				**read_file(char *filename);
-void				free_map();
-void				free_file();
 void				map_gen(t_all *all);
 int					ft_max_col(char	**str);
 int					ft_tile_size(t_all *all);
 void				render_player(t_all *all);
-void				my_pixel_put(t_img *win, int x, int y, int color);
+void				my_pixel_put(t_img *img, int x, int y, int color);
 int					player_pos(t_all *all);
 void				set_hooks(t_all *all);
 void				mv_up(t_all *all);
@@ -170,6 +173,16 @@ void				mv_right(t_all *all);
 void				mv_left(t_all *all);
 int					close_button(t_all *all);
 void				rotate_horizontal(double ang, t_dxy in, t_dxy *out);
-int					calculate_rays(t_all *all);
+void				calc_rays(t_all *all);
+int					tex_init(t_all *all);
+int					load_tex(t_all *all, char *img_addr, int i);
+void				draw_tex(t_all *all, int x);
+int					create_trgb(int t, int r, int g, int b);
+void				mem_spr(t_all *all);
+
+void				free_win(t_all *all);
+void				free_tex(t_all *all);
+void				free_ray(t_all *all);
+void				free_map(t_all *all);
 
 #endif

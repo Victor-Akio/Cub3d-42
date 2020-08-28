@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/23 01:54:02 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/28 08:32:57 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,21 +141,25 @@ int					read_map(t_all *all, char **matrix)
 			all->map.h = ft_atoi(*matrix);
 		}
 		else if (ft_strncmp(*matrix, "NO", 2) == 0)
-			all->file.keys[0] = next_word(*matrix += 2);
-		else if (ft_strncmp(*matrix, "SO", 2) == 0)
-			all->file.keys[1] = next_word(*matrix += 2);
-		else if (ft_strncmp(*matrix, "WE", 2) == 0)
-			all->file.keys[2] = next_word(*matrix += 2);
-		else if (ft_strncmp(*matrix, "EA", 2) == 0)
 			all->file.keys[3] = next_word(*matrix += 2);
+		else if (ft_strncmp(*matrix, "SO", 2) == 0)
+			all->file.keys[2] = next_word(*matrix += 2);
+		else if (ft_strncmp(*matrix, "WE", 2) == 0)
+			all->file.keys[0] = next_word(*matrix += 2);
+		else if (ft_strncmp(*matrix, "EA", 2) == 0)
+			all->file.keys[1] = next_word(*matrix += 2);
 		else if (ft_strncmp(*matrix, "S", 1) == 0)
 			all->file.keys[4] = next_word(++(*matrix));
 		else if (ft_strncmp(*matrix, "F" , 1) == 0)
-			set_color(++(*matrix), &(all->color_f[0]));
+			set_color(++(*matrix), &(all->rgb_f[0]));
 		else if (ft_strncmp(*matrix, "C" , 1) == 0)
-			set_color(++(*matrix), &(all->color_c[0]));
+			set_color(++(*matrix), &(all->rgb_c[0]));
 		matrix++;
 	}
+	all->color_f = create_trgb(0, all->rgb_f[0], all->rgb_f[1], all->rgb_f[2]);
+	all->color_c = create_trgb(0, all->rgb_c[0], all->rgb_c[1], all->rgb_c[2]);
 	all->map.map = matrix;
+	all->img.h = all->map.h;
+	all->img.w = all->map.w;
 	return (1);
 }

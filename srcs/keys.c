@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 05:14:33 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/24 02:25:39 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/28 07:56:27 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int					get_keypress(int key, t_all *all)
 		mv_left(all);
 	if (key == KEY_D)
 		mv_right(all);
-	calculate_rays(all);
+	calc_rays(all);
 	return (1);
 }
 

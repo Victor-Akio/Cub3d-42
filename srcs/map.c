@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 20:12:42 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/27 00:05:07 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void				rect(t_all *all, int x, int y, int color)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			//my_pixel_put(&(all->img), x + i, y + j, color);
-			mlx_pixel_put(all->mlx, all->win, x + i, y + j, color);
+			my_pixel_put(&(all->minimap), x + i, y + j, color);
+			//mlx_pixel_put(all->mlx, all->win, x + i, y + j, color);
 			j++;
 		}
 		i++;
@@ -64,8 +64,7 @@ void				map_gen(t_all *all)
 			tilex = j * TILE_SIZE;
 			if (all->map.map[i][j] && all->map.map[i][j] == '1')
 				rect(all, tilex, tiley, all->map.color_w);
-			else if (all->map.map[i][j] && (all->map.map[i][j] != '1' && 
-						all->map.map[i][j] != ' '))
+			else if (all->map.map[i][j] != ' ')
 				rect(all, tilex, tiley, all->map.color_f2d);
 			if (all->map.map[i][j] && (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
 				all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W'))
@@ -73,8 +72,8 @@ void				map_gen(t_all *all)
 				all->player.pos.x = tilex + TILE_SIZE / 2;
 				all->player.pos.y = tiley + TILE_SIZE / 2;
 				all->player.way = all->map.map[i][j];
-				all->player.map.x = i;
-				all->player.map.y = j;
+				all->player.map.x = i + 0.5;
+				all->player.map.y = j + 0.5;
 			}
 			j++;
 		}
