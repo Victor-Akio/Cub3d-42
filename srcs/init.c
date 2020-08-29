@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 23:33:28 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 11:20:14 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void				window_init(t_all *all, t_img *img)
 			&(all->minimap.line_length), &(all->minimap.endian));
 	map_gen(all);
 	player_pos(all);
-	mlx_put_image_to_window(all->mlx, all->win, all->minimap.img, 0, 0);
+	//mlx_put_image_to_window(all->mlx, all->win, all->minimap.img, 0, 0);
 }

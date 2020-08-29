@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 05:14:33 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 07:56:27 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 11:34:05 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,16 @@ int					get_keypress(int key, t_all *all)
 	return (1);
 }
 
+int					game_loop(t_all *all)
+{
+	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
+	 return (1);
+}
+
 void				set_hooks(t_all *all)
 {
 	mlx_hook(all->win, X11_KEYPRESS, 1L << 0, get_keypress, all);
 	mlx_hook(all->win, X11_DESTROY, 0, close_button, all);
 	mlx_hook(all->win, 33, 0, close_button, all);
+	mlx_hook(all->win, 9, 1L << 21, game_loop, all);
 }
