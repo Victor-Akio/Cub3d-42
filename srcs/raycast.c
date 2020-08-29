@@ -44,8 +44,8 @@ void				delta_dangle(t_all *all)
 			all->ray.side = 1;
 			all->ray.wall = all->ray.step.y == 1 ? 1 : 0;
 		}
-		// if (all->map.map[(int)ray->pos.x][(int)ray->pos.y] > 1)
-		// 	put_sprite(all, (int)ray->pos.x, (int)ray->pos.y);
+		if (all->map.map[(int)all->ray.pos.x][(int)all->ray.pos.y] > 1)
+			put_sprite(all, (int)all->ray.pos.x, (int)all->ray.pos.y);
 		if (all->map.map[(int)all->ray.pos.x][(int)all->ray.pos.y] == '1')
 			hit = 1;
 	}
@@ -78,7 +78,7 @@ void				calc_rays(t_all *all)
 	int			i;
 
 	i = 0;
-//	clear_sprites(all);
+	clear_sprites(all);
 	while (i < all->img.w)
 	{
 		all->ray.ang = (atan2(i - all->img.w / 2, all->player.dist) / RADIAN);
@@ -93,6 +93,6 @@ void				calc_rays(t_all *all)
 		all->ray.buffer[i] = all->ray.pdist;
 		i++;
 	}
-//	draw_spr(all);
+	draw_spr(all);
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
 }

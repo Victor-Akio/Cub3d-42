@@ -34,8 +34,8 @@ int		exit_game(t_all *all, int ret)
 	free_ray(all);
 	free_win(all);
 	free_tex(all);
-	if (all->sprite)
-		free(all->sprite);
+	if (all->sprites)
+		free(all->sprites);
 	exit(ret);
 }
 

@@ -64,11 +64,21 @@ typedef struct			s_player
 	double			dist;
 }						t_player;
 
-typedef struct			s_sprite
+typedef struct	s_sprites
 {
-	int				type;
-	t_xy			pos;
-}						t_sprite;
+	int		type;
+	t_xy	pos;
+	t_xy	rel_pos;
+	double	angle;
+	double	pdist;
+	t_xy	sdist;
+	t_xy	step;
+	t_xy	dir;
+	int		wall;
+	int		side;
+	int		draw_w;
+	int		draw_h;
+}				t_sprites;
 
 typedef struct			s_ray
 {
@@ -85,6 +95,7 @@ typedef struct			s_ray
 	int				side;
 	int				wall;
 	int				spr;
+	int			max_sprites;
 }						t_ray;
 
 typedef struct			s_tex
@@ -138,7 +149,7 @@ typedef struct			s_all
 	t_ray			ray;
 	t_player		player;
 	t_tex			*tex;
-	t_sprite		*sprite;
+	t_sprites		*sprites;
 	double			rotation;
 	double			walk;
 	int				rgb_f[3];
@@ -187,5 +198,10 @@ void				free_win(t_all *all);
 void				free_tex(t_all *all);
 void				free_ray(t_all *all);
 void				free_map(t_all *all);
+
+void				put_sprite(t_all *all, int x, int y);
+void				draw_spr(t_all *all);
+void				clear_sprites(t_all *a);
+int					get_tex_pixel(t_all *all, int x, int y, int index);
 
 #endif

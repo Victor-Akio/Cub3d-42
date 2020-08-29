@@ -45,7 +45,7 @@ void				ft_init(t_all *all)
 	all->player.dir.x = 0;
 	all->player.dir.y = 1;
 	all->tex = NULL;
-	all->sprite = NULL;
+	all->sprites = NULL;
 	all->ray.buffer = NULL;
 }
 

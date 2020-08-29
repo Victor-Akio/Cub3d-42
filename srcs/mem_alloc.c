@@ -16,6 +16,6 @@ void				mem_spr(t_all *all)
 {
 	(void)all;
 	all->ray.spr = all->map.h * all->map.w;
-	all->sprite = (t_sprite *)ft_calloc(all->ray.spr, sizeof(t_sprite));
+	all->sprites = (t_sprites *)ft_calloc(all->ray.spr, sizeof(t_sprites));
 	all->ray.buffer = (double *)ft_calloc(all->img.w + 1, sizeof(double));
 }

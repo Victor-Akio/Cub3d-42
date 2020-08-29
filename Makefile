@@ -59,8 +59,8 @@ CUB_SRC	=	$(CUB_DIR)/cub3d.c			\
 			$(CUB_DIR)/raycast.c		\
 			$(CUB_DIR)/texture.c		\
 			$(CUB_DIR)/mem_alloc.c		\
-			$(CUB_DIR)/bmp.c
-			# $(CUB_DIR)/sprite.c
+			$(CUB_DIR)/bmp.c			\
+			$(CUB_DIR)/sprite.c
 
 SRC		=	$(CUB_SRC)
 
