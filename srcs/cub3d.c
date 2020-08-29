@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 20:57:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/08/29 23:47:55 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int		g_error_number;
 
 void	game_validatescreen(t_all *all)
 {
@@ -53,7 +51,8 @@ int		launch_game(t_all *all)
 int		check_args(t_all *all, int argc, char **argv)
 {
 	if (argc <= 1)
-		return (error_exit("ERROR\nNot enough arguments\nUSE: ./cub3d [mapfile.cub]"));
+		return (error_exit("ERROR\nNot enough arguments\n \
+		USE: ./cub3d [mapfile.cub]"));
 	else if (argc == 2)
 	{
 		if (ft_strlen(argv[1]) <= 4 || ft_strncmp(argv[1] +

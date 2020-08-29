@@ -6,7 +6,7 @@
 #    By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/10 22:01:31 by vminomiy          #+#    #+#              #
-#    Updated: 2020/08/28 21:28:15 by vminomiy         ###   ########.fr        #
+#    Updated: 2020/08/30 00:27:24 by vminomiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,9 @@ CUB_SRC	=	$(CUB_DIR)/cub3d.c			\
 			$(CUB_DIR)/raycast.c		\
 			$(CUB_DIR)/texture.c		\
 			$(CUB_DIR)/mem_alloc.c		\
-			$(CUB_DIR)/bmp.c
-			# $(CUB_DIR)/sprite.c
+			$(CUB_DIR)/bmp.c			\
+			$(CUB_DIR)/cub_utils.c		\
+			$(CUB_DIR)/sprite.c
 
 SRC		=	$(CUB_SRC)
 

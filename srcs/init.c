@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 21:42:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/08/30 00:30:01 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void				ft_init(t_all *all)
 {
 	all->map.h = 0;
 	all->map.w = 0;
-	all->map.map = 0;
+	all->map.map = NULL;
 	all->img.img = NULL;
 	all->win = NULL;
 	all->img.addr = NULL;
@@ -77,5 +77,4 @@ void				window_init(t_all *all, t_img *img)
 			&(all->minimap.line_length), &(all->minimap.endian));
 	map_gen(all);
 	player_pos(all);
-	//mlx_put_image_to_window(all->mlx, all->win, all->minimap.img, 0, 0);
 }

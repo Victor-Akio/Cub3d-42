@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/23 01:55:40 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 21:17:03 by user42           ###   ########.fr       */
+/*   Created: 2020/08/29 23:24:16 by vminomiy          #+#    #+#             */
+/*   Updated: 2020/08/29 23:46:20 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void				delta_dangle(t_all *all)
 			all->ray.side = 1;
 			all->ray.wall = all->ray.step.y == 1 ? 1 : 0;
 		}
-		// if (all->map.map[(int)ray->pos.x][(int)ray->pos.y] > 1)
-		// 	put_sprite(all, (int)ray->pos.x, (int)ray->pos.y);
+		//  if (all->map.map[(int)ray->pos.x][(int)ray->pos.y] > 1)
+		//  	put_sprite(all, (int)ray->pos.x, (int)ray->pos.y);
 		if (all->map.map[(int)all->ray.pos.x][(int)all->ray.pos.y] == '1')
 			hit = 1;
 	}
@@ -55,19 +55,23 @@ void				calc_step_dir(t_ray *ray)
 {
 	ray->step.x = 1;
 	if (ray->dir.x >= 0)
-		ray->ab_dist.x = (floor(ray->pos.x) + 1.0 - ray->pos.x) * ray->delta_dist.x;
+		ray->ab_dist.x = (floor(ray->pos.x) + 1.0 - ray->pos.x) *
+			ray->delta_dist.x;
 	else
 	{
 		ray->step.x = -1;
-		ray->ab_dist.x = (ray->pos.x - floor(ray->pos.x)) * ray->delta_dist.x;
+		ray->ab_dist.x = (ray->pos.x - floor(ray->pos.x)) *
+			ray->delta_dist.x;
 	}
 	ray->step.y = 1;
 	if (ray->dir.y >= 0)
-		ray->ab_dist.y = (floor(ray->pos.y) + 1.0 - ray->pos.y) * ray->delta_dist.y;
+		ray->ab_dist.y = (floor(ray->pos.y) + 1.0 - ray->pos.y) *
+			ray->delta_dist.y;
 	else
 	{
 		ray->step.y = -1;
-		ray->ab_dist.y = (ray->pos.y - floor(ray->pos.y)) * ray->delta_dist.y;
+		ray->ab_dist.y = (ray->pos.y - floor(ray->pos.y)) *
+			ray->delta_dist.y;
 	}
 	ray->pos.x = floor(ray->pos.x);
 	ray->pos.y = floor(ray->pos.y);
@@ -78,7 +82,7 @@ void				calc_rays(t_all *all)
 	int			i;
 
 	i = 0;
-//	clear_sprites(all);
+	// clear_sprites(all);
 	while (i < all->img.w)
 	{
 		all->ray.ang = (atan2(i - all->img.w / 2, all->player.dist) / RADIAN);
@@ -93,6 +97,6 @@ void				calc_rays(t_all *all)
 		all->ray.buffer[i] = all->ray.pdist;
 		i++;
 	}
-//	draw_spr(all);
+	// draw_spr(all);
 	mlx_put_image_to_window(all->mlx, all->win, all->img.img, 0, 0);
 }

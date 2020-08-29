@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite.c                                           :+:      :+:    :+:   */
+/*   ft_iswall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/27 00:14:45 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 00:32:00 by vminomiy         ###   ########.fr       */
+/*   Created: 2020/08/29 23:44:24 by vminomiy          #+#    #+#             */
+/*   Updated: 2020/08/29 23:45:27 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "libft.h"
 
-void				draw_spr(t_all *all)
+int					ft_iswall(int c)
 {
-	printf("%i\n", all->img.w);
+	if (c == '1' || c == ' ')
+		return (1);
+	return (0);
 }

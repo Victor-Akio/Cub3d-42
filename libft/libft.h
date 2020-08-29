@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 10:30:11 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/27 21:14:18 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 23:45:06 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int				*ft_vcalloc(size_t count, int value);
 int				ft_intlen(int n);
 int				ft_isspace(int c);
 int				ft_arespace(char *line);
+int				ft_iswall(int c);
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H

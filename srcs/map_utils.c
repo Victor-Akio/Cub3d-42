@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 19:19:42 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 21:11:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/08/29 23:45:51 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,36 @@ int					ft_max_col(char **str)
 	return (col);
 }
 
-int					ft_tile_size(t_all *all)
+char				*next_word(char *str)
 {
-	if (ft_arraylen(all->map.map) > ft_max_col(all->map.map))
-		return (all->map.h / ft_arraylen(all->map.map));
+	while (*str == ' ')
+		str++;
+	return (str);
+}
+
+int					find_width(char **str, int beg, int end)
+{
+	int			w;
+	int			i;
+
+	w = 0;
+	while (beg < end)
+	{
+		i = ft_strlen(str[beg]);
+		if (i > w)
+			w = i;
+		beg++;
+	}
+	return (w);
+}
+
+int					ft_ischarmap(char c)
+{
+	if (!c || c == '\0')
+		return (0);
+	if (c == '0' || c == '1' || c == '2' || c == 'N' ||
+			c == 'S' || c == 'E' || c == 'W')
+		return (1);
 	else
-		return (all->map.w / ft_max_col(all->map.map));
+		return (0);
 }

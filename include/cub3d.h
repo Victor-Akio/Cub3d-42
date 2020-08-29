@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 11:10:44 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 00:32:57 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,42 +147,57 @@ typedef struct			s_all
 	int				color_c;
 }						t_all;
 
+/*Error and exit functions*/
 int					error_exit(char *err);
 int					hook_close(t_all *all);
 int					exit_game(t_all *all, int ret);
-int					load_file(t_all *all, char *filename);
+int					close_button(t_all *all);
+
+/*Init*/
 void				file_init(t_file *file);
-char				**ft_realloc(char **str);
-int					read_map(t_all *all, char **matrix);
-int					find_width(char **str, int beg, int end);
-int					ft_init2(t_all *all);
 void				ft_init(t_all *all);
+int					ft_init2(t_all *all);
 void				window_init(t_all *all, t_img *win);
+int					tex_init(t_all *all);
+
+/*GNL - Load File*/
 int					load_file(t_all *all, char *filename);
-void				file_init(t_file *file);
+int					load_tex(t_all *all, char *img_addr, int i);
 char				**read_file(char *filename);
+void				game_validatescreen(t_all *all);
+int					read_map(t_all *all, char **matrix);
 void				map_gen(t_all *all);
-int					ft_max_col(char	**str);
-int					ft_tile_size(t_all *all);
+
+/*Raycast*/
+void				calc_rays(t_all *all);
+
+/*Player and Movement*/
+void				rotate_horizontal(double ang, t_dxy in, t_dxy *out);
 void				render_player(t_all *all);
-void				my_pixel_put(t_img *img, int x, int y, int color);
 int					player_pos(t_all *all);
 void				set_hooks(t_all *all);
 void				mv_up(t_all *all);
 void				mv_down(t_all *all);
 void				mv_right(t_all *all);
 void				mv_left(t_all *all);
-int					close_button(t_all *all);
-void				rotate_horizontal(double ang, t_dxy in, t_dxy *out);
-void				calc_rays(t_all *all);
-int					tex_init(t_all *all);
-int					load_tex(t_all *all, char *img_addr, int i);
-void				draw_tex(t_all *all, int x);
-int					create_trgb(int t, int r, int g, int b);
-void				mem_spr(t_all *all);
-int					convert_bmp(t_all *all);
-void				game_validatescreen(t_all *all);
 
+/*Textures and sprites*/
+void				draw_tex(t_all *all, int x);
+void				mem_spr(t_all *all);
+
+/*Utils*/
+int					find_width(char **str, int beg, int end);
+int					ft_max_col(char	**str);
+void				my_pixel_put(t_img *img, int x, int y, int color);
+int					create_trgb(int t, int r, int g, int b);
+int					convert_bmp(t_all *all);
+char				*next_word(char *str);
+int					ft_ischarmap(char c);
+int					set_color(char *line, int *dst);
+void				has_walls(int x, int y, int len, char **matrix);
+
+/*Memory*/
+char				**ft_realloc(char **str);
 void				free_win(t_all *all);
 void				free_tex(t_all *all);
 void				free_ray(t_all *all);
