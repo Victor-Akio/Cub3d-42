@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 08:35:41 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 10:30:49 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
+# include "sys/stat.h"
 
 # define PI 3.14159265
 # define RADIAN 0.0174533
@@ -179,6 +180,8 @@ int					load_tex(t_all *all, char *img_addr, int i);
 void				draw_tex(t_all *all, int x);
 int					create_trgb(int t, int r, int g, int b);
 void				mem_spr(t_all *all);
+int					convert_bmp(t_all *all);
+void				game_validatescreen(t_all *all);
 
 void				free_win(t_all *all);
 void				free_tex(t_all *all);

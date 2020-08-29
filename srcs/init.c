@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 08:15:42 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/28 23:33:28 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int					tex_init(t_all *all)
 
 void				window_init(t_all *all, t_img *img)
 {
+	game_validatescreen(all);
 	all->win = mlx_new_window(all->mlx, img->w, img->h, GAME_TITLE);
 	img->img = mlx_new_image(all->mlx, all->map.w, all->map.h);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),

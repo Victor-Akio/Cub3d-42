@@ -6,13 +6,25 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 08:54:00 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 08:29:57 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 int		g_error_number;
+
+void				game_validatescreen(t_all *all)
+{
+	int			width;
+	int		height;
+
+	mlx_get_screen_size(all->mlx, &width, &height);
+	if (all->img.w > width)
+		all->img.w = width;
+	if (all->img.h > height)
+		all->img.h = height;
+}
 
 int					exit_game(t_all *all, int ret)
 {
@@ -42,15 +54,25 @@ int					check_args(t_all *all, int argc, char **argv)
 {
 	if (argc <= 1)
 		return (error_exit("ERROR\nNot enough arguments\nUSE: ./cub3d [mapfile.cub]"));
-	else if (ft_strlen(argv[1]) <= 4 || ft_strncmp(argv[1] +
+	else if (argc == 2)
+	{
+		if (ft_strlen(argv[1]) <= 4 || ft_strncmp(argv[1] +
 				(ft_strlen(argv[1]) - 4), ".cub", 4) != 0)
-		return (error_exit("ERROR\nInvalid Map Name]"));
-	if (argc == 3 && ft_strncmp(argv[2], "--save", 6) != 0)
-		return (error_exit("ERROR\nInvalid second argument.\nUSE: --save"));
-	if (g_error_number)
-		return (0);
-	all->file.filename = argv[1];
-	return (argc -1);
+			return (error_exit("ERROR\nInvalid Map Name]"));
+		all->file.filename = argv[1];
+		return (argc -1);
+	}
+	else if (argc == 3)
+	{
+		if (ft_strncmp(argv[1], "--save", 6) != 0)
+			return (error_exit("ERROR\nInvalid third argument.\nUSE: --save"));	
+		if (ft_strlen(argv[2]) <= 4 || ft_strncmp(argv[2] +
+				(ft_strlen(argv[2]) - 4), ".cub", 4) != 0)
+			return (error_exit("ERROR\nInvalid Map Name."));
+		all->file.filename = argv[2];
+		return (argc -1);
+	}
+	return (error_exit("ERROR\nInvalid arguments."));
 }
 
 int					main(int argc, char **argv)
@@ -67,8 +89,8 @@ int					main(int argc, char **argv)
 		exit_game(&all, EXIT_SUCCESS);
 	calc_rays(&all);
 	set_hooks(&all);
-	//if (args == 2 && !(convert_bmp(&all)))
-	//	exit_game(&all, EXIT_SUCCESS);
+	if (args == 2 && !(convert_bmp(&all)))
+		exit_game(&all, EXIT_SUCCESS);
 	if (args == 2)
 		exit_game(&all, EXIT_FAILURE);
 	mlx_loop(all.mlx);
