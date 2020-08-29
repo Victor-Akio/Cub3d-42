@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/28 19:52:58 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 10:31:04 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:58:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ static void			bmp_pixel_put(t_img *img, int line, int *e, int f)
 	while (k >= 0)
 	{
 		save = img->addr[*e + (line * img->line_length)];
-		img->addr[*e + (line * img->line_length)] = img->addr[f - k + (line * img->line_length - 1)];
+		img->addr[*e + (line * img->line_length)] = img->addr
+			[f - k + (line * img->line_length - 1)];
 		img->addr[f - k + (line * img->line_length - 1)] = save;
 		k--;
-		*e = *e +1;
+		*e = *e + 1;
 	}
 }
 
@@ -46,7 +47,7 @@ static int			mir_vert(t_img *img)
 	int			line;
 	int			e;
 	int			f;
-	
+
 	line = 0;
 	while (line < img->h)
 	{

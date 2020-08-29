@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 11:13:29 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 20:57:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		g_error_number;
 
-void				game_validatescreen(t_all *all)
+void	game_validatescreen(t_all *all)
 {
-	int			width;
+	int		width;
 	int		height;
 
 	mlx_get_screen_size(all->mlx, &width, &height);
@@ -26,7 +26,7 @@ void				game_validatescreen(t_all *all)
 		all->img.h = height;
 }
 
-int					exit_game(t_all *all, int ret)
+int		exit_game(t_all *all, int ret)
 {
 	if (all->ray.buffer)
 		free(all->ray.buffer);
@@ -39,7 +39,7 @@ int					exit_game(t_all *all, int ret)
 	exit(ret);
 }
 
-int					launch_game(t_all *all)
+int		launch_game(t_all *all)
 {
 	ft_init(all);
 	if (!(ft_init2(all)) || !(load_file(all, all->file.filename)) ||
@@ -50,7 +50,7 @@ int					launch_game(t_all *all)
 	return (1);
 }
 
-int					check_args(t_all *all, int argc, char **argv)
+int		check_args(t_all *all, int argc, char **argv)
 {
 	if (argc <= 1)
 		return (error_exit("ERROR\nNot enough arguments\nUSE: ./cub3d [mapfile.cub]"));
@@ -60,25 +60,25 @@ int					check_args(t_all *all, int argc, char **argv)
 				(ft_strlen(argv[1]) - 4), ".cub", 4) != 0)
 			return (error_exit("ERROR\nInvalid Map Name]"));
 		all->file.filename = argv[1];
-		return (argc -1);
+		return (argc - 1);
 	}
 	else if (argc == 3)
 	{
 		if (ft_strncmp(argv[1], "--save", 6) != 0)
-			return (error_exit("ERROR\nInvalid third argument.\nUSE: --save"));	
+			return (error_exit("ERROR\nInvalid third argument.\nUSE: --save"));
 		if (ft_strlen(argv[2]) <= 4 || ft_strncmp(argv[2] +
 				(ft_strlen(argv[2]) - 4), ".cub", 4) != 0)
 			return (error_exit("ERROR\nInvalid Map Name."));
 		all->file.filename = argv[2];
-		return (argc -1);
+		return (argc - 1);
 	}
 	return (error_exit("ERROR\nInvalid arguments."));
 }
 
-int					main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	t_all			all;
-	int				args;
+	t_all	all;
+	int		args;
 
 	if (!(all.mlx = mlx_init()))
 		return (error_exit("ERROR\nMLX could not start properly"));

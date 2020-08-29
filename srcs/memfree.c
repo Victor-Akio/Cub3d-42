@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memfree.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 02:48:16 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 07:02:29 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:13:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void				free_map(t_all *all)
 {
 	int			i;
 	t_map		*map;
-
 
 	i = 0;
 	map = &all->map;

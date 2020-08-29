@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 03:28:49 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 10:18:22 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:00:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ char				**read_file(char *filename)
 		str[i] = line;
 		i++;
 		if (ret == 0)
-			break;
+			break ;
 	}
-	close (fd);
+	close(fd);
 	return (str);
 }
 
@@ -77,7 +77,8 @@ void				file_init(t_file *file)
 int					load_file(t_all *all, char *filename)
 {
 	file_init(&all->file);
-	if (!(all->file.data = read_file(filename)) || !(read_map(all, all->file.data)))
+	if (!(all->file.data = read_file(filename)) ||
+		!(read_map(all, all->file.data)))
 		return (0);
 	return (1);
 }

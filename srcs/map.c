@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/27 00:05:07 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 22:19:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void				my_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_img *img, int x, int y, int color)
 {
 	char		*dst;
 
@@ -20,7 +20,7 @@ void				my_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void				rect(t_all *all, int x, int y, int color)
+void	rect(t_all *all, int x, int y, int color)
 {
 	int			i;
 	int			j;
@@ -42,35 +42,35 @@ void				rect(t_all *all, int x, int y, int color)
 
 int		create_trgb(int t, int r, int g, int b)
 {
-	return(t << 24 | r << 16 | g << 8 | b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void				map_gen(t_all *all)
+void	map_gen(t_all *all)
 {
 	int			i;
 	int			j;
-	int			tilex;
-	int			tiley;
-	
+	// int			tilex;
+	// int			tiley;
+
 	i = 0;
-	all->map.color_w = create_trgb(0, 252, 238, 195);
-	all->map.color_f2d = create_trgb(0, 151, 142, 117);
+	// all->map.color_w = create_trgb(0, 252, 238, 195);
+	// all->map.color_f2d = create_trgb(0, 151, 142, 117);
 	while (i < ft_arraylen(all->map.map))
 	{
 		j = 0;
-		tiley = i * TILE_SIZE;
+		// tiley = i * TILE_SIZE;
 		while (all->map.map[i][j] && j < ft_max_col(all->map.map))
 		{
-			tilex = j * TILE_SIZE;
-			if (all->map.map[i][j] && all->map.map[i][j] == '1')
-				rect(all, tilex, tiley, all->map.color_w);
-			else if (all->map.map[i][j] != ' ')
-				rect(all, tilex, tiley, all->map.color_f2d);
-			if (all->map.map[i][j] && (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
-				all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W'))
+			// tilex = j * TILE_SIZE;
+			// if (all->map.map[i][j] && all->map.map[i][j] == '1')
+			// 	rect(all, tilex, tiley, all->map.color_w);
+			// else if (all->map.map[i][j] != ' ')
+			// 	rect(all, tilex, tiley, all->map.color_f2d);
+			if (all->map.map[i][j] == 'N' || all->map.map[i][j] == 'E' ||
+				all->map.map[i][j] == 'S' ||all->map.map[i][j] == 'W')
 			{
-				all->player.pos.x = tilex + TILE_SIZE / 2;
-				all->player.pos.y = tiley + TILE_SIZE / 2;
+				all->player.pos.x = (j * TILE_SIZE) + TILE_SIZE / 2;
+				all->player.pos.y = (i * TILE_SIZE) + TILE_SIZE / 2;
 				all->player.way = all->map.map[i][j];
 				all->player.map.x = i + 0.5;
 				all->player.map.y = j + 0.5;
@@ -78,5 +78,5 @@ void				map_gen(t_all *all)
 			j++;
 		}
 		i++;
-	}	
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 05:14:57 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 08:13:45 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:14:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void				mv_down(t_all *all)
 		all->player.map.y -= all->player.dir.y * all->walk;
 }
 
-void				mv_left(t_all * all)
+void				mv_left(t_all *all)
 {
 	rotate_horizontal(-90, all->player.dir, &all->player.dir);
 	mv_up(all);
 	rotate_horizontal(90, all->player.dir, &all->player.dir);
 }
 
-void				mv_right(t_all * all)
+void				mv_right(t_all *all)
 {
 	rotate_horizontal(90, all->player.dir, &all->player.dir);
 	mv_up(all);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/28 08:32:57 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:08:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void			has_walls(int x, int y, int len, char **matrix)
 	int			ptrl;
 
 	ptrl = ft_arraylen(matrix);
-	if (((y == 0 || y == ptrl -1) || (x == 0 || x == len - 1)) &&
+	if (((y == 0 || y == ptrl - 1) || (x == 0 || x == len - 1)) &&
 			(!(is_wall(matrix[y][x]))))
 		error_exit("ERROR\nMap not surronded by walls.");
 	if ((y > 0 && y < ptrl - 1) && (x > 0 && x < len - 1) &&
@@ -76,9 +76,8 @@ void				ft_cub_valid_map(char **matrix)
 
 	xy.x = 0;
 	xy.y = 0;
-
 	len.y = ft_arraylen(matrix);
-	while (xy.y < len.y -1)
+	while (xy.y < len.y - 1)
 	{
 		len.x = ft_strlen(matrix[xy.y]);
 		while (xy.x < len.x)
@@ -110,7 +109,7 @@ int					set_color(char *line, int *dst)
 			i++;
 		if (ft_isdigit(line[i]))
 			dst[j] = 0;
-		while(ft_isdigit(line[i]))
+		while (ft_isdigit(line[i]))
 			dst[j] = (dst[j] * 10) + (line[i++] - '0');
 		if (dst[j] < 0 || dst[j] > 255)
 			return (-1);
@@ -150,9 +149,9 @@ int					read_map(t_all *all, char **matrix)
 			all->file.keys[1] = next_word(*matrix += 2);
 		else if (ft_strncmp(*matrix, "S", 1) == 0)
 			all->file.keys[4] = next_word(++(*matrix));
-		else if (ft_strncmp(*matrix, "F" , 1) == 0)
+		else if (ft_strncmp(*matrix, "F", 1) == 0)
 			set_color(++(*matrix), &(all->rgb_f[0]));
-		else if (ft_strncmp(*matrix, "C" , 1) == 0)
+		else if (ft_strncmp(*matrix, "C", 1) == 0)
 			set_color(++(*matrix), &(all->rgb_c[0]));
 		matrix++;
 	}

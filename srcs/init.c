@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 11:20:14 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:42:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int					ft_init2(t_all *all)
 		all->img.w = 600;
 	if (all->img.h == 0)
 		all->img.h = 600;
-	all->player.dist = ((double)(all->img.w) / 2.0) / tan((all->img.fov / 2) * RADIAN);
+	all->player.dist = ((double)(all->img.w) / 2.0) /
+		tan((all->img.fov / 2) * RADIAN);
 	return (1);
 }
 
@@ -71,7 +72,8 @@ void				window_init(t_all *all, t_img *img)
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
 		&(img->line_length), &(img->endian));
 	all->minimap.img = mlx_new_image(all->mlx, all->map.w, all->map.h);
-	all->minimap.addr = mlx_get_data_addr(all->minimap.img, &(all->minimap.bits_per_pixel),
+	all->minimap.addr = mlx_get_data_addr(
+			all->minimap.img, &(all->minimap.bits_per_pixel),
 			&(all->minimap.line_length), &(all->minimap.endian));
 	map_gen(all);
 	player_pos(all);

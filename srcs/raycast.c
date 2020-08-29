@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 01:55:40 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 11:21:53 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:17:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void				calc_pdist(t_all *all)
 {
-	if 	(all->ray.side == 0)
+	if (all->ray.side == 0)
 		all->ray.dist = (all->ray.pos.x - all->player.map.x +
 				(1.0 - all->ray.step.x) / 2.0) / all->ray.dir.x;
 	else
-		all->ray.dist = (all->ray.pos.y - all->player.map.y + 
+		all->ray.dist = (all->ray.pos.y - all->player.map.y +
 				(1.0 - all->ray.step.y) / 2.0) / all->ray.dir.y;
 	all->ray.pdist = cos(fabs(all->ray.ang) * RADIAN) * all->ray.dist;
 }
@@ -44,8 +44,8 @@ void				delta_dangle(t_all *all)
 			all->ray.side = 1;
 			all->ray.wall = all->ray.step.y == 1 ? 1 : 0;
 		}
-/*		if (all->map.map[(int)ray->pos.x][(int)ray->pos.y] > 1)
-			put_sprite(all, (int)ray->pos.x, (int)ray->pos.y);*/
+		// if (all->map.map[(int)ray->pos.x][(int)ray->pos.y] > 1)
+		// 	put_sprite(all, (int)ray->pos.x, (int)ray->pos.y);
 		if (all->map.map[(int)all->ray.pos.x][(int)all->ray.pos.y] == '1')
 			hit = 1;
 	}

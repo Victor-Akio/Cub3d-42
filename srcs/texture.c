@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/25 21:24:06 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/27 21:13:00 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:19:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int					get_tex_pixel(t_all *all, int x, int y, int index)
 {
 	char		*color;
 
-	color = (all->tex[index].img) + (all->tex[index].h * y * 
+	color = (all->tex[index].img) + (all->tex[index].h * y *
 			(all->tex[index].bpp / 8)) + (x * (all->tex[index].bpp / 8));
 	if (color == 0)
 		return (0);
@@ -73,7 +73,8 @@ void				draw_tex(t_all *all, int x)
 		{
 			tex.y = all->tex[all->ray.wall].h * (i - line.x) /
 				(line.y - line.x);
-			color = (unsigned int)get_tex_pixel(all, tex.x, tex.y, all->ray.wall);
+			color = (unsigned int)get_tex_pixel(
+				all, tex.x, tex.y, all->ray.wall);
 			my_pixel_put(&all->img, x, i, color);
 		}
 		i++;
@@ -85,7 +86,7 @@ int					load_tex(t_all *all, char *img_addr, int i)
 	void		*mlx;
 	char		*str;
 
-	mlx = mlx_xpm_file_to_image(all->mlx, img_addr, &all->tex[i].w, 
+	mlx = mlx_xpm_file_to_image(all->mlx, img_addr, &all->tex[i].w,
 				&all->tex[i].h);
 	if (!mlx)
 		error_exit("ERROR\nNo texture was loaded.");

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/20 19:19:42 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/22 01:35:12 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/29 21:11:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int					ft_max_col(char	**str)
+int					ft_max_col(char **str)
 {
 	int		col;
 	int		tmp;
@@ -20,7 +20,7 @@ int					ft_max_col(char	**str)
 	col = 0;
 	while (*str != NULL)
 	{
-		tmp= ft_strlen(*str);
+		tmp = ft_strlen(*str);
 		col = (col > tmp) ? col : tmp;
 		str++;
 	}
