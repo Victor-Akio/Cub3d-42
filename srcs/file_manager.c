@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/13 03:28:49 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 23:25:25 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:15:26 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,28 @@ int					load_file(t_all *all, char *filename)
 {
 	file_init(&all->file);
 	if (!(all->file.data = read_file(filename)) ||
-		!(read_map(all, all->file.data)))
+		!(garead_map(all, all->file.data)))
 		return (0);
 	return (1);
+}
+
+void				ft_cub_valid_map(char **matrix)
+{
+	t_xy		xy;
+	t_xy		len;
+
+	xy.x = 0;
+	xy.y = 0;
+	len.y = ft_arraylen(matrix);
+	while (xy.y < len.y - 1)
+	{
+		len.x = ft_strlen(matrix[xy.y]);
+		while (xy.x < len.x)
+		{
+			has_walls(xy.x, xy.y, len.x, matrix);
+			xy.x++;
+		}
+		xy.x = 0;
+		xy.y++;
+	}
 }

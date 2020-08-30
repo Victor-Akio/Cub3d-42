@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 03:21:28 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:24:23 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@
 # define TILE_SIZE 20
 # define GAME_TITLE "Cub3d"
 
-typedef struct			s_dxy
+typedef struct		s_dxy
 {
 	double			x;
 	double			y;
-}						t_dxy;
+}					t_dxy;
 
-typedef struct			s_xy
+typedef struct		s_xy
 {
 	int				x;
 	int				y;
-}						t_xy;
+}					t_xy;
 
-typedef struct			s_player
+typedef struct		s_player
 {
 	t_dxy			pos;
 	t_dxy			dir;
@@ -62,9 +62,9 @@ typedef struct			s_player
 	char			way;
 	char			**face[4];
 	double			dist;
-}						t_player;
+}					t_player;
 
-typedef struct			s_sprites
+typedef struct		s_sprites
 {
 	int				type;
 	t_xy			pos;
@@ -77,9 +77,9 @@ typedef struct			s_sprites
 	int				wall;
 	int				side;
 	t_xy			draw;
-}						t_sprites;
+}					t_sprites;
 
-typedef struct			s_ray
+typedef struct		s_ray
 {
 	t_dxy			pos;
 	t_dxy			dir;
@@ -94,9 +94,9 @@ typedef struct			s_ray
 	int				side;
 	int				wall;
 	int				spr;
-}						t_ray;
+}					t_ray;
 
-typedef struct			s_tex
+typedef struct		s_tex
 {
 	char			*img;
 	void			*mlx;
@@ -106,18 +106,18 @@ typedef struct			s_tex
 	int				line;
 	int				endian;
 	int				set;
-}						t_tex;
+}					t_tex;
 
-typedef struct			s_map
+typedef struct		s_map
 {
 	char			**map;
 	int				w;
 	int				h;
 	int				color_w;
 	int				color_f2d;
-}						t_map;
+}					t_map;
 
-typedef struct			s_img
+typedef struct		s_img
 {
 	void			*img;
 	char			*addr;
@@ -127,16 +127,16 @@ typedef struct			s_img
 	int				line_length;
 	int				endian;
 	int				fov;
-}						t_img;
+}					t_img;
 
-typedef struct			s_file
+typedef struct		s_file
 {
 	char			*filename;
 	char			**data;
 	char			*keys[5];
-}						t_file;
+}					t_file;
 
-typedef struct			s_all
+typedef struct		s_all
 {
 	void			*mlx;
 	void			*win;
@@ -154,33 +154,43 @@ typedef struct			s_all
 	int				rgb_c[3];
 	int				color_f;
 	int				color_c;
-}						t_all;
+}					t_all;
 
-/*Error and exit functions*/
+/*
+** Error and exit functions
+*/
+
 int					error_exit(char *err);
 int					hook_close(t_all *all);
 int					exit_game(t_all *all, int ret);
 int					close_button(t_all *all);
 
-/*Init*/
+/*
+**Init
+*/
+
 void				file_init(t_file *file);
 void				ft_init(t_all *all);
 int					ft_init2(t_all *all);
 void				window_init(t_all *all, t_img *win);
 int					tex_init(t_all *all);
 
-/*GNL - Load File*/
+/*
+** GNL - Load File
+*/
+
 int					load_file(t_all *all, char *filename);
 int					load_tex(t_all *all, char *img_addr, int i);
 char				**read_file(char *filename);
 void				validatescreen(t_all *all);
-int					read_map(t_all *all, char **matrix);
 void				map_gen(t_all *all);
+void				ft_cub_valid_map(char **matrix);
+int					garead_map(t_all *all, char **mat);
 
-/*Raycast*/
-void				calc_rays(t_all *all);
+/*
+**Player and Movement
+*/
 
-/*Player and Movement*/
 void				rotate_horizontal(double ang, t_dxy in, t_dxy *out);
 void				render_player(t_all *all);
 int					player_pos(t_all *all);
@@ -190,15 +200,22 @@ void				mv_down(t_all *all);
 void				mv_right(t_all *all);
 void				mv_left(t_all *all);
 
-/*Textures and sprites*/
+/*
+** Textures, raycast and sprites
+*/
+
 void				draw_tex(t_all *all, int x);
 void				mem_spr(t_all *all);
 void				put_sprite(t_all *all, int x, int y);
 void				draw_spr(t_all *all);
 void				clear_sprites(t_all *all);
 int					get_tex_color(t_tex *tex, int x, int y);
+void				calc_rays(t_all *all);
 
-/*Utils*/
+/*
+** Utils
+*/
+
 int					find_width(char **str, int beg, int end);
 int					ft_max_col(char	**str);
 void				my_pixel_put(t_img *img, int x, int y, int color);
@@ -208,8 +225,17 @@ char				*next_word(char *str);
 int					ft_ischarmap(char c);
 int					set_color(char *line, int *dst);
 void				has_walls(int x, int y, int len, char **matrix);
+int					cub_str_isspace(char *line);
+int					cub_str_ismap(char **cub, int id);
+int					cub_handler(t_all *all, char **mat, int i);
+int					valid_map(char **cub, t_all *all);
+int					set_path(char **line, char *nxword);
+int					set_resolution(char *line, t_all *all);
 
-/*Memory*/
+/*
+** Memory
+*/
+
 char				**ft_realloc(char **str);
 void				free_win(t_all *all);
 void				free_tex(t_all *all);

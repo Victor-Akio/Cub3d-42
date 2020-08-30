@@ -6,73 +6,105 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 00:25:42 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:18:05 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void				ft_cub_valid_map(char **matrix)
+int					set_resolution(char *line, t_all *all)
 {
-	t_xy		xy;
-	t_xy		len;
-
-	xy.x = 0;
-	xy.y = 0;
-	len.y = ft_arraylen(matrix);
-	while (xy.y < len.y - 1)
-	{
-		len.x = ft_strlen(matrix[xy.y]);
-		while (xy.x < len.x)
-		{
-			has_walls(xy.x, xy.y, len.x, matrix);
-			xy.x++;
-		}
-		xy.x = 0;
-		xy.y++;
-	}
+	if (all->map.w != -1 || all->map.h != -1)
+		return (-1);
+	line = next_word(line);
+	all->map.w = ft_atoi(line);
+	line = next_word((line) + ft_intlen(all->map.w));
+	all->map.h = ft_atoi(line);
+	if (all->map.w < 1 || all->map.h < 1)
+		return (-1);
+	return (1);
 }
 
-int					read_map(t_all *all, char **matrix)
+int					set_path(char **line, char *nxword)
 {
-	char	*tmp;
+	if (*line != NULL)
+		return (-1);
+	*line = nxword;
+	return (1);
+}
 
-	while (matrix)
+int					valid_map(char **cub, t_all *all)
+{
+	size_t		i;
+	size_t		j;
+	int			ply;
+
+	ply = 0;
+	i = 0;
+	while (cub[i])
 	{
-		tmp = next_word(*matrix);
-		if (ft_isdigit(*tmp))
+		j = 0;
+		while (cub[i][j] && ft_strchr("012NSWE \t\n\v\f\r", cub[i][j]))
 		{
-			ft_cub_valid_map(matrix);
-			break ;
+			if (cub[i][j] == 'N' || cub[i][j] == 'S' || cub[i][j] == 'E'
+				|| cub[i][j] == 'W')
+				ply++;
+			j++;
 		}
-		*matrix = next_word(*matrix);
-		if (**matrix == 'R')
-		{
-			(*matrix)++;
-			*matrix = next_word(*matrix);
-			all->map.w = ft_atoi(*matrix);
-			*matrix = next_word((*matrix) + ft_intlen(all->map.w));
-			all->map.h = ft_atoi(*matrix);
-		}
-		else if (ft_strncmp(*matrix, "NO", 2) == 0)
-			all->file.keys[3] = next_word(*matrix += 2);
-		else if (ft_strncmp(*matrix, "SO", 2) == 0)
-			all->file.keys[2] = next_word(*matrix += 2);
-		else if (ft_strncmp(*matrix, "WE", 2) == 0)
-			all->file.keys[0] = next_word(*matrix += 2);
-		else if (ft_strncmp(*matrix, "EA", 2) == 0)
-			all->file.keys[1] = next_word(*matrix += 2);
-		else if (ft_strncmp(*matrix, "S", 1) == 0)
-			all->file.keys[4] = next_word(++(*matrix));
-		else if (ft_strncmp(*matrix, "F", 1) == 0)
-			set_color(++(*matrix), &(all->rgb_f[0]));
-		else if (ft_strncmp(*matrix, "C", 1) == 0)
-			set_color(++(*matrix), &(all->rgb_c[0]));
-		matrix++;
+		i++;
+	}
+	if (ply != 1)
+		error_exit("ERROR\n Something wrong with player");
+	ft_cub_valid_map(cub);
+	all->map.map = cub;
+	return (1);
+}
+
+int					cub_handler(t_all *all, char **mat, int i)
+{
+	if (ft_strncmp(mat[i], "R", 1) == 0)
+		return (set_resolution(&mat[i][1], all));
+	else if (ft_strncmp(mat[i], "NO", 2) == 0)
+		return (set_path(&(all->file.keys[3]), next_word(mat[i] += 2)));
+	else if (ft_strncmp(mat[i], "SO", 2) == 0)
+		return (set_path(&(all->file.keys[2]), next_word(mat[i] += 2)));
+	else if (ft_strncmp(mat[i], "WE", 2) == 0)
+		return (set_path(&(all->file.keys[0]), next_word(mat[i] += 2)));
+	else if (ft_strncmp(mat[i], "EA", 2) == 0)
+		return (set_path(&(all->file.keys[1]), next_word(mat[i] += 2)));
+	else if (ft_strncmp(mat[i], "S", 1) == 0)
+		return (set_path(&(all->file.keys[4]), next_word(++(mat[i]))));
+	else if (ft_strncmp(mat[i], "F", 1) == 0)
+		return (set_color(++(mat[i]), &(all->rgb_f[0])));
+	else if (ft_strncmp(mat[i], "C", 1) == 0)
+		return (set_color(++(mat[i]), &(all->rgb_c[0])));
+	else if (cub_str_isspace(mat[i]))
+		return (0);
+	else if (cub_str_ismap(mat, i))
+		return (valid_map(mat + i, all));
+	return (-1);
+}
+
+int					garead_map(t_all *all, char **mat)
+{
+	int			status;
+	int			tmp;
+	int			i;
+
+	i = 0;
+	tmp = -1;
+	status = 0;
+	while (status < 9)
+	{
+		if (!mat[i])
+			return (0);
+		tmp = cub_handler(all, mat, i++);
+		status += tmp;
+		if (tmp < 0 || (all->map.map != NULL && status < 9))
+			return (0);
 	}
 	all->color_f = create_trgb(0, all->rgb_f[0], all->rgb_f[1], all->rgb_f[2]);
 	all->color_c = create_trgb(0, all->rgb_c[0], all->rgb_c[1], all->rgb_c[2]);
-	all->map.map = matrix;
 	all->img.h = all->map.h;
 	all->img.w = all->map.w;
 	return (1);

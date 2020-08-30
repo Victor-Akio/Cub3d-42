@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 02:56:20 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:02:43 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int					ft_init2(t_all *all)
 
 void				ft_init(t_all *all)
 {
-	all->map.h = 0;
-	all->map.w = 0;
+	all->map.h = -1;
+	all->map.w = -1;
 	all->map.map = NULL;
 	all->img.img = NULL;
 	all->win = NULL;

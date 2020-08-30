@@ -6,11 +6,35 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 23:36:35 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 03:21:16 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:17:33 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int					cub_str_ismap(char **cub, int id)
+{
+	size_t		i;
+
+	i = 0;
+	while (cub[id][i] != '\0' && ft_strchr("012NSWE \t\n\v\f\r", cub[id][i]))
+		i++;
+	if (cub[id][i] == '\0')
+		return (1);
+	return (0);
+}
+
+int					cub_str_isspace(char *line)
+{
+	size_t		i;
+
+	i = 0;
+	while (ft_isspace(line[i]))
+		i++;
+	if (line[i] == '\0')
+		return (1);
+	return (0);
+}
 
 int					get_tex_color(t_tex *tex, int x, int y)
 {
