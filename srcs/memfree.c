@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 02:48:16 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 23:24:49 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:37:52 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				free_map(t_all *all)
 
 	i = 0;
 	map = &all->map;
-	while (i < map->h && map->map[i])
+	while (map->map && i < map->h && map->map[i])
 	{
 		if (map->map[i])
 			free(map->map[i]);

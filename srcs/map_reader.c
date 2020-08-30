@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 04:18:05 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 04:58:45 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ int					garead_map(t_all *all, char **mat)
 	while (status < 9)
 	{
 		if (!mat[i])
-			return (0);
+			error_exit("ERROR\nInvalid Map structure.");
 		tmp = cub_handler(all, mat, i++);
 		status += tmp;
 		if (tmp < 0 || (all->map.map != NULL && status < 9))
-			return (0);
+			error_exit("ERROR\nInvalid map arguments.");
 	}
 	all->color_f = create_trgb(0, all->rgb_f[0], all->rgb_f[1], all->rgb_f[2]);
 	all->color_c = create_trgb(0, all->rgb_c[0], all->rgb_c[1], all->rgb_c[2]);
