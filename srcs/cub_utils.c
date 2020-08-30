@@ -6,11 +6,18 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 23:36:35 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 00:33:18 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 03:21:16 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int					get_tex_color(t_tex *tex, int x, int y)
+{
+	if (x >= 0 && x < tex->w && y >= 0 && y < tex->h)
+		return (*(int *)(tex->img + (4 * tex->w * y) + (4 * x)));
+	return (0);
+}
 
 int					set_color(char *line, int *dst)
 {

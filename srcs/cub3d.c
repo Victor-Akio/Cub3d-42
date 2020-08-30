@@ -6,13 +6,13 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:29:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 23:47:55 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 03:43:37 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	game_validatescreen(t_all *all)
+void	validatescreen(t_all *all)
 {
 	int		width;
 	int		height;
@@ -32,8 +32,8 @@ int		exit_game(t_all *all, int ret)
 	free_ray(all);
 	free_win(all);
 	free_tex(all);
-	if (all->sprite)
-		free(all->sprite);
+	if (all->sprites)
+		free(all->sprites);
 	exit(ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 03:57:15 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 23:41:01 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 03:13:20 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,6 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	rect(t_all *all, int x, int y, int color)
-{
-	int			i;
-	int			j;
-
-	i = 0;
-	j = 0;
-	while (i < TILE_SIZE)
-	{
-		j = 0;
-		while (j < TILE_SIZE)
-		{
-			my_pixel_put(&(all->minimap), x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
 }
 
 int		create_trgb(int t, int r, int g, int b)

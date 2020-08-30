@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 22:12:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 00:30:01 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 02:56:20 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void				ft_init(t_all *all)
 	all->player.dir.x = 0;
 	all->player.dir.y = 1;
 	all->tex = NULL;
-	all->sprite = NULL;
+	all->sprites = NULL;
 	all->ray.buffer = NULL;
 }
 
@@ -66,7 +66,7 @@ int					tex_init(t_all *all)
 
 void				window_init(t_all *all, t_img *img)
 {
-	game_validatescreen(all);
+	validatescreen(all);
 	all->win = mlx_new_window(all->mlx, img->w, img->h, GAME_TITLE);
 	img->img = mlx_new_image(all->mlx, all->map.w, all->map.h);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),

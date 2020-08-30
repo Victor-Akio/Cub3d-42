@@ -6,7 +6,7 @@
 /*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/30 00:32:57 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 03:21:28 by vminomiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,20 @@ typedef struct			s_player
 	double			dist;
 }						t_player;
 
-typedef struct			s_sprite
+typedef struct			s_sprites
 {
 	int				type;
 	t_xy			pos;
-}						t_sprite;
+	double			pdist;
+	t_dxy			rel_pos;
+	double			ang;
+	t_dxy			side_dist;
+	t_dxy			step;
+	t_dxy			dir;
+	int				wall;
+	int				side;
+	t_xy			draw;
+}						t_sprites;
 
 typedef struct			s_ray
 {
@@ -138,7 +147,7 @@ typedef struct			s_all
 	t_ray			ray;
 	t_player		player;
 	t_tex			*tex;
-	t_sprite		*sprite;
+	t_sprites		*sprites;
 	double			rotation;
 	double			walk;
 	int				rgb_f[3];
@@ -164,7 +173,7 @@ int					tex_init(t_all *all);
 int					load_file(t_all *all, char *filename);
 int					load_tex(t_all *all, char *img_addr, int i);
 char				**read_file(char *filename);
-void				game_validatescreen(t_all *all);
+void				validatescreen(t_all *all);
 int					read_map(t_all *all, char **matrix);
 void				map_gen(t_all *all);
 
@@ -184,6 +193,10 @@ void				mv_left(t_all *all);
 /*Textures and sprites*/
 void				draw_tex(t_all *all, int x);
 void				mem_spr(t_all *all);
+void				put_sprite(t_all *all, int x, int y);
+void				draw_spr(t_all *all);
+void				clear_sprites(t_all *all);
+int					get_tex_color(t_tex *tex, int x, int y);
 
 /*Utils*/
 int					find_width(char **str, int beg, int end);
