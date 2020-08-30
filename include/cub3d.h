@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vminomiy <vminomiy@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 06:04:54 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 11:10:44 by vminomiy         ###   ########.fr       */
+/*   Updated: 2020/08/30 03:33:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,11 +181,17 @@ void				draw_tex(t_all *all, int x);
 int					create_trgb(int t, int r, int g, int b);
 void				mem_spr(t_all *all);
 int					convert_bmp(t_all *all);
+void				ft_cub_valid_map(char **matrix);
 void				game_validatescreen(t_all *all);
 
 void				free_win(t_all *all);
 void				free_tex(t_all *all);
 void				free_ray(t_all *all);
 void				free_map(t_all *all);
+
+char				*next_word(char *str);
+int					set_color(char *line, int *dst);
+
+
 
 #endif

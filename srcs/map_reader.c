@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/14 21:07:26 by vminomiy          #+#    #+#             */
-/*   Updated: 2020/08/29 21:08:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/08/30 03:35:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void			has_walls(int x, int y, int len, char **matrix)
 		error_exit("ERROR\nMap not surronded by walls.");
 }
 
-void				ft_cub_valid_map(char **matrix)
+void			ft_cub_valid_map(char **matrix)
 {
 	t_xy		xy;
 	t_xy		len;
